@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
-export const salons = gql`
-	query salons {
-		salons {
+export const shops = gql`
+	query shops {
+		shops {
 			shop_name
 			street
 			city
