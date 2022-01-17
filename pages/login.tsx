@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from '../styles/Login.module.css';
-import axios from 'axios';
 import { login } from '../services/user.service';
 const Login = () => {
 	const [state, setState] = useState({

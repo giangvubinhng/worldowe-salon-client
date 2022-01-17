@@ -1,9 +1,21 @@
 export interface IShopBody {
-	city: string;
-	country: string;
-	phone: string;
-	shop_name: string;
-	state: string;
-	street: string;
-	zip: string;
+  user_id: number;
+  id: number;
+  shop_name: string;
+  street: string;
+  city: string;
+  state: string;
+  country: string;
+  zip: string;
+  phone: string;
+}
+
+export interface ICreateShopBody {
+  shop_name: string;
+  street: string;
+  city: string;
+  state: string;
+  country: string;
+  zip: string;
+  phone: string;
 }

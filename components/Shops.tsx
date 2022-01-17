@@ -1,27 +1,24 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
-import { shops } from '../graphql/queries';
-import { NextPage } from 'next';
-import Card from '../components/Card';
-import { IShopBody } from '../interfaces/IShop';
+import React from "react";
+import { useQuery } from "@apollo/client";
+import { GET_SHOPS } from "../graphql/shopQueries";
+import { NextPage } from "next";
+import Card from "../components/Card";
+import { IShopBody } from "../interfaces/IShop";
 
 interface props {
-	clicked: boolean;
+  clicked: boolean;
 }
 const Shops: NextPage<props> = ({ clicked }) => {
-	const { loading, error, data } = useQuery(shops, { skip: !clicked });
-	// if (results.loading) console.log(results.loading);
-	// if (results.error) console.log(results.error);
-	// if (results.data) console.log(results.data);
-	return (
-		<div>
-			{data
-				? data.shops.map((shop: IShopBody, ind: number) => (
-						<Card shop={shop} key={ind} />
-				  ))
-				: null}
-		</div>
-	);
+  const { loading, error, data } = useQuery(GET_SHOPS, { skip: !clicked });
+  return (
+    <div>
+      {data
+        ? data.shops.map((shop: IShopBody, ind: number) => (
+            <Card shop={shop} key={ind} />
+          ))
+        : null}
+    </div>
+  );
 };
 
 export default Shops;
