@@ -16,7 +16,6 @@ const VerifyPage: NextPage = () => {
 	useEffect(() => {
 		if (!router.isReady) return;
 		const code = router.query.verifyCode;
-		console.log(code);
 		verifyUser(code);
 	}, [router.isReady]);
 	return <div>{verify ? <h1>{verify}</h1> : <h1>Verifying....</h1>}</div>;

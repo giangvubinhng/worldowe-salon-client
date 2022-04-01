@@ -1,36 +1,30 @@
 import styles from '../../styles/ShopDetail.module.css';
-import axios from 'axios'
 import {useQuery} from "@apollo/client";
-import client from "../../Apollo/client"
-import {GET_SHOPS} from "../../graphql/shopQueries";
-import {ApolloClient, InMemoryCache} from '@apollo/client';
+import {GET_CURRENT_SHOP} from "../../graphql/shopQueries";
+import {NextPage} from 'next';
+import {IShopBody} from '../../interfaces/IShop';
+import {useRouter} from 'next/router'
+import Spinner from 'react-bootstrap/Spinner'
+import {useEffect} from 'react';
+
+interface resultBody {
+	success: boolean,
+	message: string,
+	shops: [IShopBody]
+}
+//doc : https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js
 
 const ShopPage = () => {
-	return (
-		<div className={styles.container}>
-			Sup
-		</div>
-	)
+	const router = useRouter();
+	const id = router.query.id
+	const numId = parseInt(id as string)
 
-}
-// https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js 
-// maybe this will work.. too lazy to do rn
-export async function getStaticProps() {
-}
+	const {loading, error, data} = useQuery(GET_CURRENT_SHOP, {variables: {id: numId}});
 
-export async function getStaticPaths() {
-	const {loading, error, data} = await client.query({query: GET_SHOPS});
-	return {
-		paths: data.map((r: any) => {
-			return {
-				params: {
-					id: r.id
-				},
-				fallback: false,
-			}
-		})
-	}
-
+	if (loading) return <div><Spinner animation="grow" /></div>
+	if (error) return <div> error </div>
+	if (!data) return <div> empty </div>
+	return <div className={styles.container}> Welcome to {data.shop?.shop_name}</div>
 }
 
 export default ShopPage

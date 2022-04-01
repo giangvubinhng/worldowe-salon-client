@@ -13,7 +13,7 @@ const Shops: NextPage<props> = ({clicked}) => {
 	return (
 		<div>
 			{data
-				? data.shops.map((shop: IShopBody, id: number) => (
+				? data.shops.map((shop: IShopBody) => (
 					<Card shop={shop} key={shop.id} />
 				))
 				: null}

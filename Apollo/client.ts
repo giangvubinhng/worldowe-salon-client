@@ -15,7 +15,7 @@ import isEqual from 'lodash/isEqual'
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
 
-let apolloClient: any
+let apolloClient: any;
 
 function createApolloClient() {
 	return new ApolloClient({
