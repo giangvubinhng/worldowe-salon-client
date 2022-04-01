@@ -1,7 +1,6 @@
 .navbar {
-	background-color: rgba(216, 226, 220, 0.3);
+	background-color: rgba(216, 226, 220);
 	width: 100%;
-	height: 100px;
 }
 .navLink {
 	font-family: 'Montserrat', sans-serif;

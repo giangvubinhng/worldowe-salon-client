@@ -22,7 +22,6 @@ const Navbar: React.FC<props> = ({ user }) => {
 				collapseOnSelect
 				expand="lg"
 				className={styles.navbar}
-				fixed="top"
 			>
 				<Container>
 					<BNavbar.Brand href="/">Worldowe</BNavbar.Brand>

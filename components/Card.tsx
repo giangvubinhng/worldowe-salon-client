@@ -1,13 +1,11 @@
 import {NextPage} from 'next';
 import {useRouter} from 'next/router'
 import Link from "next/link"
-import {Card as BCard, Button} from 'react-bootstrap';
+import {Card as BCard, Button, Modal} from 'react-bootstrap';
 import {IShopBody} from '../interfaces/IShop';
-import ShopDetail from '../pages/shop/[id]'
+import ShopDetail from '../pages/shops/[id]'
+import {useState} from "react"
 
-import Modal from 'react-modal';
-
-Modal.setAppElement('#__next');
 interface props {
 	shop: IShopBody;
 }
@@ -22,11 +20,19 @@ const Card: NextPage<props> = ({shop}) => {
 					<BCard.Text>
 						{shop.street}, {shop.city}, {shop.state}, {shop.zip}, {shop.country}
 					</BCard.Text>
-					<Link href={`/?id=${shop.id}`} as={`/shop/${shop.id}`}>Go To Shop</Link>
+					<Link href={`/?id=${shop.id}`} as={`/shops/${shop.id}`}>Go To Shop</Link>
 				</BCard.Body>
 			</BCard>
-			<Modal isOpen={!!router.query.id} onRequestClose={() => router.push("/")}>
-				<ShopDetail />
+			<Modal
+				size="lg"
+				aria-labelledby="contained-modal-title-vcenter"
+				centered
+				show={!!router.query.id}
+				onHide={() => router.push("/")}
+			>
+				<Modal.Body>
+					<ShopDetail />
+				</Modal.Body>
 			</Modal>
 		</div>
 	);
