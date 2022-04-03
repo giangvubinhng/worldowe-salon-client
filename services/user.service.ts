@@ -41,7 +41,7 @@ export const login = async (data: any) => {
 };
 export const forgetPassword = async (email: string) => {
 	try {
-		const result = await axios.post(`${URI}/send-reset-password-email`)
+		const result = await axios.post(`${URI}/send-reset-password-email`, email)
 		if (result.status === 200 && result.data.success) {
 			return result.data
 		}
