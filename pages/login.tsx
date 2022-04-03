@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styles from '../styles/Login.module.css';
-import { login } from '../services/user.service';
+import {login, forgetPassword} from '../services/user.service';
+import {Modal} from 'react-bootstrap'
 const Login = () => {
 	const [state, setState] = useState({
 		email: '',
 		password: '',
+		forgotEmail: ''
 	});
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
+		const {name, value} = e.target;
 		setState({
 			...state,
 			[name]: value,
@@ -16,8 +18,18 @@ const Login = () => {
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		login(state);
+		const loginInfo = {
+			email: state.email,
+			password: state.password
+		}
+		login(loginInfo);
 	};
+
+	const sendForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		forgetPassword(state.forgotEmail)
+	}
+	const [forgotClicked, setForgotClicked] = useState(false);
 	return (
 		<div className={styles.container}>
 			<div className={styles.inner}>
@@ -64,10 +76,18 @@ const Login = () => {
 					<button type="submit" className="btn btn-dark btn-lg btn-block">
 						Sign in
 					</button>
-					<p className="forgot-password text-right">
-						Forgot <a href="#">password?</a>
-					</p>
 				</form>
+				<button onClick={() => setForgotClicked(true)}>Forgot password?</button>
+				<Modal size="sm" centered show={forgotClicked} onHide={() => setForgotClicked(false)}>
+					<Modal.Body>
+						<form onSubmit={sendForgotPassword}>
+							<input type="email" name="forgotEmail" value={state.forgotEmail} onChange={onInputChange} placeholder="enter email" />
+							<button type="submit" className="btn btn-dark btn-sm btn-block">
+								Send
+							</button>
+						</form>
+					</Modal.Body>
+				</Modal>
 			</div>
 		</div>
 	);
