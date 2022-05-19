@@ -44,6 +44,9 @@ const Navbar: React.FC<props> = ({ user }) => {
 										<NavDropdown.Item href="#action/3.1">
 											My Stores
 										</NavDropdown.Item>
+										<NavDropdown.Item>
+											Account
+										</NavDropdown.Item>
 										<NavDropdown.Divider />
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>
