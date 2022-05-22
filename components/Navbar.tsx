@@ -24,7 +24,7 @@ const Navbar: React.FC<props> = ({ user }) => {
 				className={styles.navbar}
 			>
 				<Container>
-					<BNavbar.Brand href="/">Worldowe</BNavbar.Brand>
+					<BNavbar.Brand><Link href="/">Worldowe</Link></BNavbar.Brand>
 					<BNavbar.Toggle aria-controls="responsive-navbar-nav" />
 					<BNavbar.Collapse id="responsive-navbar-nav">
 						<Nav className="me-auto"></Nav>
@@ -41,9 +41,9 @@ const Navbar: React.FC<props> = ({ user }) => {
 										title={'Hi, ' + user.first_name}
 										menuVariant="dark"
 									>
-										<NavDropdown.Item href="#action/3.1">
+										<Link href={`/users/${user.user_id}/shops`} passHref>
 											My Stores
-										</NavDropdown.Item>
+										</Link>
 										<NavDropdown.Divider />
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>

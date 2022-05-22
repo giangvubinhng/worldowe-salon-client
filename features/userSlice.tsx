@@ -7,6 +7,7 @@ const initialStateValue: IUserBody = {
 	email: '',
 	first_name: '',
 	last_name: '',
+	user_id: '',
 	is_loggedIn: false,
 };
 
@@ -21,7 +22,7 @@ export const userSlice = createSlice({
 	name: 'user',
 	initialState: { value: initialStateValue },
 	reducers: {
-		fetchCurrentUser: (state, action: PayloadAction<IUserBody>) => {
+		fetchCurrentUser: (state: any, action: PayloadAction<IUserBody>) => {
 			state.value = action.payload;
 			if (state.value) state.value.is_loggedIn = true;
 		},

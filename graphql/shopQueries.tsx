@@ -30,10 +30,25 @@ export const GET_CURRENT_SHOP = gql`
     }
   }
 `;
+export const GET_MY_SHOPS = gql`
+  query myShops {
+    myShops {
+      user_id
+      id
+      shop_name
+      street
+      city
+      state
+      country
+      zip
+      phone
+    }
+  }
+`;
 export const CREATE_SHOP = gql`
   mutation createShop($shop: IShop!) {
     createShop(shop: $shop) {
-      shop_name
+      id
     }
   }
 `;
