@@ -11,11 +11,13 @@ import styles from '../styles/Navbar.module.css';
 import { IUserBody } from '../interfaces/IUser';
 import { logout } from '../services/user.service';
 
+
 interface props {
 	user: IUserBody;
 }
 
 const Navbar: React.FC<props> = ({ user }) => {
+	
 	return (
 		<div className={styles.navbarContainer}>
 			<BNavbar
@@ -44,9 +46,11 @@ const Navbar: React.FC<props> = ({ user }) => {
 										<NavDropdown.Item href="#action/3.1">
 											My Stores
 										</NavDropdown.Item>
-										<NavDropdown.Item>
+										
+										<NavDropdown.Item href="/account">
 											Account
 										</NavDropdown.Item>
+										
 										<NavDropdown.Divider />
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>
