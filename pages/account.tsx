@@ -1,14 +1,10 @@
-import React, { useState }, { FC}  from 'react';
-import styles from '../styles/Signup.module.css';
-import { register } from '../services/user.service';
-import { IUserBody, IUserRegister } from '../interfaces/IUser';
-import {useAppDispatch, useAppSelector} from "../app/hooks";
-import {fetchCurrentUserAsync} from "../features/userSlice";
-import {useEffect} from "react";
-import Router, { useRouter } from 'next/router';
+import React, { FC}  from 'react';
+import { useAppSelector} from "../app/hooks";
+
+import Link from 'next/link';
 
 
-const Account: FC = ({children, href: any}) => {
+const Account: FC = () => {
 
     const user = useAppSelector((state) => state.user.value);
 	// You can use hooks here
@@ -17,11 +13,7 @@ const Account: FC = ({children, href: any}) => {
 	// 	dispatch(fetchCurrentUserAsync());
 	// }, [dispatch]);
 
-    const route = useRouter()
-    const handleClick = (e) => {
-        e.preventDefault()
-        route.push(href)
-    }
+    
         
     return (
         <div>
@@ -47,7 +39,7 @@ const Account: FC = ({children, href: any}) => {
                     </div>
 
                     <div>
-                        <button onClick={handleClick}>Change Password</button>
+                        <Link href={`/users/${user.user_id}/change-password`}>Change Password</Link>
 
                     </div>
 

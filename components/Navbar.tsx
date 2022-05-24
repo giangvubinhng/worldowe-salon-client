@@ -11,13 +11,11 @@ import styles from '../styles/Navbar.module.css';
 import { IUserBody } from '../interfaces/IUser';
 import { logout } from '../services/user.service';
 
-
 interface props {
 	user: IUserBody;
 }
 
 const Navbar: React.FC<props> = ({ user }) => {
-	
 	return (
 		<div className={styles.navbarContainer}>
 			<BNavbar
@@ -26,7 +24,7 @@ const Navbar: React.FC<props> = ({ user }) => {
 				className={styles.navbar}
 			>
 				<Container>
-					<BNavbar.Brand href="/">Worldowe</BNavbar.Brand>
+					<BNavbar.Brand><Link href="/">Worldowe</Link></BNavbar.Brand>
 					<BNavbar.Toggle aria-controls="responsive-navbar-nav" />
 					<BNavbar.Collapse id="responsive-navbar-nav">
 						<Nav className="me-auto"></Nav>
@@ -43,14 +41,14 @@ const Navbar: React.FC<props> = ({ user }) => {
 										title={'Hi, ' + user.first_name}
 										menuVariant="dark"
 									>
-										<NavDropdown.Item href="#action/3.1">
+										<Link href={`/users/${user.user_id}/shops`} passHref>
 											My Stores
-										</NavDropdown.Item>
-										
+										</Link>
+
 										<NavDropdown.Item href="/account">
-											Account
-										</NavDropdown.Item>
-										
+                                            Account
+                                        </NavDropdown.Item>
+
 										<NavDropdown.Divider />
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>
