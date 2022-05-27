@@ -44,6 +44,11 @@ const Navbar: React.FC<props> = ({ user }) => {
 										<Link href={`/users/${user.user_id}/shops`} passHref>
 											My Stores
 										</Link>
+
+										<NavDropdown.Item href="/account">
+                                            Account
+                                        </NavDropdown.Item>
+
 										<NavDropdown.Divider />
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>

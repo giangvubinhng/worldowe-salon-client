@@ -25,6 +25,7 @@
     "react-dom": "17.0.2",
     "react-modal": "^3.14.4",
     "react-redux": "^7.2.6",
+    "react-router-dom": "^6.3.0",
     "ts-deepmerge": "^2.0.1",
     "yarn": "^1.22.17"
   },
