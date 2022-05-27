@@ -1,0 +1,20 @@
+.Bcard {
+    width: 40rem;
+    height: auto;
+    margin: 10px;
+    background-color: #cce3de;
+}
+
+.Bcard:hover {
+    background-color: #a4c3b2;
+}
+
+.Button {
+    background-color: #84a59d;
+    border-color: #faedcd;
+}
+
+.Button:hover {
+    color: #598392;
+    background-color: #dedbd2;
+}
