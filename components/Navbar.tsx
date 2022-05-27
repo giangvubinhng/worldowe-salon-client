@@ -36,19 +36,20 @@ const Navbar: React.FC<props> = ({ user }) => {
 							</Link>
 							{user.is_loggedIn ? (
 								<>
-									<NavDropdown
-										id="nav-dropdown-dark-example"
-										title={'Hi, ' + user.first_name}
-										menuVariant="dark"
+									<NavDropdown 
+										// title={'Hi, ' + user.first_name}
+										title={
+											<span className={styles.navDropdown}>{user.first_name}</span>
+										}
+										menuVariant="light"
 									>
 										<Link href={`/users/${user.user_id}/shops`} passHref>
-											My Stores
+											<NavDropdown.Item>My Stores</NavDropdown.Item>
 										</Link>
-
+										<NavDropdown.Divider />
 										<NavDropdown.Item href="/account">
-                                            Account
-                                        </NavDropdown.Item>
-
+											Account
+										</NavDropdown.Item>
 										<NavDropdown.Divider />
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>
