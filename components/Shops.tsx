@@ -9,7 +9,7 @@ interface props {
 	clicked: boolean;
 }
 const Shops: NextPage<props> = ({clicked}) => {
-	const {loading, error, data} = useQuery(GET_SHOPS, {skip: !clicked});
+	const {loading, error, data} = useQuery(GET_SHOPS, {skip: !clicked, fetchPolicy: 'cache-and-network'});
 	return (
 		<div>
 			{data
