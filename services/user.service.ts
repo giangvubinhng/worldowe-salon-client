@@ -32,7 +32,7 @@ export const register = async (data: IUserRegister) => {
 export const login = async (data: any) => {
 	try {
 		const results = await axios.post(`${URI}/login`, data, {
-			withCredentials: true,
+			withCredentials: true
 		});
 		if (results.status === 200) window.location.href = '/';
 	} catch (err) {
@@ -55,13 +55,13 @@ export const forgetPassword = async (email: string) => {
 
 export const changePassword = async (oldPassword: string, newPassword: string) => {
 	try {
-		const result = await axios.post(`${URI}/change-password`, {oldPassword, newPassword})
+		const result = await axios.post(`${URI}/change-password`, {oldPassword, newPassword}, {withCredentials: true})
 		if (result.status === 200 && result.data.success) {
 			return result.data
 		}
 	}
 
-	catch(e) {
+	catch (e) {
 		return e
 	}
 }
