@@ -36,8 +36,7 @@ const Navbar: React.FC<props> = ({ user }) => {
 							</Link>
 							{user.is_loggedIn ? (
 								<>
-									<NavDropdown 
-										// title={'Hi, ' + user.first_name}
+									<NavDropdown
 										title={
 											<span className={styles.navDropdown}>{user.first_name}</span>
 										}
