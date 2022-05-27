@@ -24,8 +24,8 @@ export const register = async (data: IUserRegister) => {
 		const results = await axios.post(`${URI}/signup`, data);
 		if (results.status === 200)
 			window.location.href = '/login';
-	} catch (e) {
-		console.log(e);
+	} catch (e: any) {
+		return e.response.data
 	}
 };
 
@@ -35,8 +35,8 @@ export const login = async (data: any) => {
 			withCredentials: true
 		});
 		if (results.status === 200) window.location.href = '/';
-	} catch (err) {
-		console.log(err);
+	} catch (err: any) {
+		return err.response.data
 	}
 };
 export const forgetPassword = async (email: string) => {
@@ -47,8 +47,8 @@ export const forgetPassword = async (email: string) => {
 		}
 
 	}
-	catch (e) {
-		return e
+	catch (e: any) {
+		return e.response.data
 	}
 
 }

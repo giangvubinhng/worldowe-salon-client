@@ -7,13 +7,6 @@ import Link from 'next/link';
 const Account: FC = () => {
 
 	const user = useAppSelector((state) => state.user.value);
-	// You can use hooks here
-	// const dispatch = useAppDispatch();
-	// useEffect(() => {
-	// 	dispatch(fetchCurrentUserAsync());
-	// }, [dispatch]);
-
-
 
 	return (
 		<div>
