@@ -52,3 +52,16 @@ export const forgetPassword = async (email: string) => {
 	}
 
 }
+
+export const changePassword = async (oldPassword: string, newPassword: string) => {
+	try {
+		const result = await axios.post(`${URI}/change-password`, {oldPassword, newPassword})
+		if (result.status === 200 && result.data.success) {
+			return result.data
+		}
+	}
+
+	catch(e) {
+		return e
+	}
+}
