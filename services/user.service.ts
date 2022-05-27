@@ -60,8 +60,7 @@ export const changePassword = async (oldPassword: string, newPassword: string) =
 			return result.data
 		}
 	}
-
-	catch (e) {
-		return e
+	catch (e:any) {
+		return e.response.data
 	}
 }

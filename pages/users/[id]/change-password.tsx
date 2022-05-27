@@ -5,7 +5,8 @@ const PasswordChange = () => {
 
 	let InitialReturnObject: IReturnObject = {
 		success: false,
-		message: ''
+		message: '',
+		loaded: false
 	}
 
 	const [input, setInput] = useState({
@@ -43,6 +44,7 @@ const PasswordChange = () => {
 				hasError: false,
 				message: ''
 			})
+			result.loaded = true;
 			setResult(result);
 		}
 	};
@@ -72,7 +74,7 @@ const PasswordChange = () => {
 					<button>Change Password</button>
 				</form>
 				{error.hasError ? (<p>{error.message}</p>) : null}
-				{result.success ? (<p>{result.message}</p>) : null}
+				{result.loaded ? (<p>{result.message}</p>) : null}
 			</div>
 		</div>
     );
