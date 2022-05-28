@@ -7,9 +7,12 @@ import {IShopBody} from "../interfaces/IShop";
 
 interface props {
 	clicked: boolean;
+	searchQuery: string;
+	resetSearch: Function;
 }
-const Shops: NextPage<props> = ({clicked}) => {
-	const {loading, error, data} = useQuery(GET_SHOPS, {skip: !clicked, fetchPolicy: 'cache-and-network'});
+const Shops: NextPage<props> = ({clicked, searchQuery, resetSearch}) => {
+	const {loading, error, data} = useQuery(GET_SHOPS, {skip: !clicked, fetchPolicy: 'cache-and-network', variables: {name: searchQuery}});
+
 	return (
 		<div>
 			{data

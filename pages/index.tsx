@@ -7,9 +7,19 @@ import Shops from '../components/Shops';
 
 const Home: NextPage = () => {
 	const [click, setClick] = useState(false);
-	const handleSearch = () => {
+	const [searchQuery, setSearchQuery] = useState('');
+	const handleSearch = (e: any) => {
+		e.preventDefault()
 		setClick(true);
 	};
+	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		e.preventDefault();
+		setSearchQuery(e.target.value);
+	};
+	const resetClickVar = (val: boolean) =>
+	{
+		setClick(val)
+	}
 	return (
 		<div>
 			<Head>
@@ -24,13 +34,14 @@ const Home: NextPage = () => {
 						placeholder="Search"
 						className="me-2"
 						aria-label="Search"
+						onChange={onInputChange}
 					/>
 					<Button variant="outline-success" onClick={handleSearch}>
 						Search
 					</Button>
 				</Form>
 				<h2>Shops</h2>
-				<Shops clicked={click} />
+				<Shops clicked={click} searchQuery={searchQuery} resetSearch={resetClickVar}/>
 			</main>
 		</div>
 	);
