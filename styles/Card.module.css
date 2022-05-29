@@ -11,10 +11,11 @@
 
 .Button {
     background-color: #84a59d;
-    border-color: #faedcd;
+    border-color: #84a59d;
 }
 
 .Button:hover {
     color: #598392;
     background-color: #dedbd2;
+    border-color: #598392;
 }
