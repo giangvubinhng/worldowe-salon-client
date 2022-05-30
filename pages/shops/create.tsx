@@ -6,9 +6,7 @@ import { useMutation } from "@apollo/client";
 
 const CreateShop = () => {
   const [createShop] = useMutation(CREATE_SHOP);
-  const stateOptions: string[] = ["VA", "GA"];
-  const countryOptions: string[] = ["USA", "VIETNAM"];
-  const [currentShop, setCurrentShop] = useState({
+  const initialShopState = {
     shop_name: "",
     street: "",
     city: "",
@@ -16,7 +14,12 @@ const CreateShop = () => {
     country: "",
     zip: "",
     phone: "",
-  });
+  };
+
+  const stateOptions: string[] = ["VA", "GA"];
+  const countryOptions: string[] = ["USA", "VIETNAM"];
+  const [created, setCreated] = useState(false)
+  const [currentShop, setCurrentShop] = useState(initialShopState);
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCurrentShop({
@@ -24,10 +27,13 @@ const CreateShop = () => {
       [name]: value,
     });
   };
-  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(currentShop);
-    createShop({ variables: { shop: currentShop } });
+    const result = await createShop({ variables: { shop: currentShop } });
+    if(result){
+      setCreated(true);
+      setCurrentShop(initialShopState)
+    }
   };
   return (
     <div className={styles.container}>
@@ -113,6 +119,7 @@ const CreateShop = () => {
           Create Shop
         </Button>
       </Form>
+      {created ? (<h4>Shop Created Successfully</h4>) : null}
     </div>
   );
 };
