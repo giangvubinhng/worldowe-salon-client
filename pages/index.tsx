@@ -14,6 +14,7 @@ const Home: NextPage = () => {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState();
 	const handleSearch = async (e: any) => {
+		e.preventDefault();
 		const {loading, error, data} = await client.query({query: GET_SHOPS, variables: {name: searchQuery}})
 		setResult(data);
 		setLoading(loading);
@@ -39,7 +40,7 @@ const Home: NextPage = () => {
 						aria-label="Search"
 						onChange={onInputChange}
 					/>
-					<Button variant="outline-success" onClick={handleSearch}>
+					<Button variant="outline-success" type="submit">
 						Search
 					</Button>
 				</Form>

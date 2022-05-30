@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 import {
-	Button,
 	Container,
 	Nav,
 	Navbar as BNavbar,
@@ -37,14 +36,18 @@ const Navbar: React.FC<props> = ({ user }) => {
 							{user.is_loggedIn ? (
 								<>
 									<NavDropdown
-										id="nav-dropdown-dark-example"
-										title={'Hi, ' + user.first_name}
-										menuVariant="dark"
+										className={styles.navDropDown}
+										title={user.first_name}
+										id="responsive-navbar-dropdown"
+										menuVariant="light"
 									>
 										<Link href={`/users/${user.user_id}/shops`} passHref>
-											My Stores
+											<NavDropdown.Item>
+												My Stores
+											</NavDropdown.Item>
 										</Link>
 
+										
 										<Link href={`/account`} passHref>
 											<NavDropdown.Item>
 												Account
@@ -52,6 +55,7 @@ const Navbar: React.FC<props> = ({ user }) => {
 										</Link>
 
 										<NavDropdown.Divider />
+										
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>
 								</>
