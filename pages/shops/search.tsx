@@ -21,7 +21,7 @@ const Search: NextPage = () => {
         const fetchQuery = async () => {
             if (!router.isReady) return;
             const name = router.query.name;
-            const {loading, error, data} = await client.query({query: GET_SHOPS, variables: {name: searchQuery}})
+            const {loading, error, data} = await client.query({query: GET_SHOPS, variables: {name: name}})
             setResult(data);
             setLoading(loading);
             setError(error)
@@ -29,7 +29,7 @@ const Search: NextPage = () => {
 
         fetchQuery()
 
-	}, [router.isReady, router.query.name]);
+	}, [router.isReady && router.query.name]);
 
     // Functions
     const handleSearch = async (e: any) => {
