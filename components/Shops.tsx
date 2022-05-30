@@ -17,11 +17,12 @@ const Shops: NextPage<props> = ({data, loading, error}) => {
 			{error
 				? (<p>Error</p>) : null}
 
-			{data
+			{data && data.shops.length > 0
 				? data.shops.map((shop: IShopBody) => (
 					<Card shop={shop} key={shop.id} />
 				))
 				: null}
+			{data && data.shops.length === 0 ? (<p>No shop found</p>) : null}
 		</div>
 	);
 };
