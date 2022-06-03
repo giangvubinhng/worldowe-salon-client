@@ -13,6 +13,19 @@ interface props {
 
 const Card: NextPage<props> = ({ shop }) => {
 	const router = useRouter();
+	const [prevPath, setPrevPath] = useState('')
+	const saveQuery = () => {
+		if(typeof(router.query.name) === "string")
+		{
+			setPrevPath(router.query.name)
+		}
+	}
+
+	const handleClose = () => {
+		router.push(`/shops/search?name=${prevPath}`)
+
+
+	}
 	return (
 		<div>
 			<BCard className={styles.Bcard}>
@@ -21,8 +34,8 @@ const Card: NextPage<props> = ({ shop }) => {
 					<BCard.Text>
 						{shop.street}, {shop.city}, {shop.state}, {shop.zip}, {shop.country}
 					</BCard.Text>
-					<Link href={`/?id=${shop.id}`} as={`/shops/${shop.id}`}>
-						<Button className={styles.Button}>Go To Shop</Button></Link>
+					<Link href={`${router.asPath}&id=${shop.id}`} as={`/shops/${shop.id}`}>
+						<Button className={styles.Button} onClick={saveQuery}>Go To Shop</Button></Link>
 				</BCard.Body>
 			</BCard>
 			<Modal
@@ -30,7 +43,7 @@ const Card: NextPage<props> = ({ shop }) => {
 				aria-labelledby="contained-modal-title-vcenter"
 				centered
 				show={!!router.query.id}
-				onHide={() => router.push("/")}
+				onHide={handleClose}
 			>
 				<Modal.Body>
 					<ShopDetail />
