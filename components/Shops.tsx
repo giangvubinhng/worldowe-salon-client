@@ -19,7 +19,7 @@ const Shops: NextPage<props> = ({data, loading, error}) => {
 
 			{data && data.shops.length > 0
 				? data.shops.map((shop: IShopBody) => (
-					<Card shop={shop} key={shop.id} />
+					<Card shop={shop} key={shop.id}/>
 				))
 				: null}
 			{data && data.shops.length === 0 ? (<p>No shop found</p>) : null}
