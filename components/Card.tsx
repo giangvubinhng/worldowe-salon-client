@@ -15,14 +15,11 @@ const Card: NextPage<props> = ({ shop }) => {
 	const router = useRouter();
 	const [prevPath, setPrevPath] = useState('')
 	const saveQuery = () => {
-		if(typeof(router.query.name) === "string")
-		{
-			setPrevPath(router.query.name)
-		}
+			setPrevPath(router.asPath.toString())
 	}
 
 	const handleClose = () => {
-		router.push(`/shops/search?name=${prevPath}`)
+		router.push(`${prevPath}`)
 
 
 	}
