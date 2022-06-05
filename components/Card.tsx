@@ -1,10 +1,6 @@
 import { NextPage } from 'next';
-import { useRouter } from 'next/router'
-import Link from "next/link"
-import { Card as BCard, Button, Modal } from 'react-bootstrap';
+import { Card as BCard, Button} from 'react-bootstrap';
 import { IShopBody } from '../interfaces/IShop';
-import ShopDetail from '../pages/shops/[id]'
-import { useState } from "react"
 import styles from '../styles/Card.module.css';
 
 interface props {
@@ -12,17 +8,7 @@ interface props {
 }
 
 const Card: NextPage<props> = ({ shop }) => {
-	const router = useRouter();
-	const [prevPath, setPrevPath] = useState('')
-	const saveQuery = () => {
-			setPrevPath(router.asPath.toString())
-	}
 
-	const handleClose = () => {
-		router.push(`${prevPath}`)
-
-
-	}
 	return (
 		<div>
 			<BCard className={styles.Bcard}>
@@ -31,21 +17,10 @@ const Card: NextPage<props> = ({ shop }) => {
 					<BCard.Text>
 						{shop.street}, {shop.city}, {shop.state}, {shop.zip}, {shop.country}
 					</BCard.Text>
-					<Link href={`${router.asPath}&id=${shop.id}`} as={`/shops/${shop.id}`}>
-						<Button className={styles.Button} onClick={saveQuery}>Go To Shop</Button></Link>
+					<a target="_blank" href={`/shops/${shop.id}`} rel="noopener noreferrer">
+						<Button className={styles.Button}>Go To Shop</Button></a>
 				</BCard.Body>
 			</BCard>
-			<Modal
-				size="lg"
-				aria-labelledby="contained-modal-title-vcenter"
-				centered
-				show={!!router.query.id}
-				onHide={handleClose}
-			>
-				<Modal.Body>
-					<ShopDetail />
-				</Modal.Body>
-			</Modal>
 		</div>
 	);
 };
