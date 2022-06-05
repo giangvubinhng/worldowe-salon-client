@@ -15,3 +15,14 @@
 	border-radius: 15px;
 	transition: all 0.3s;
 }
+.errorMessage{
+	color: red;
+}
+
+.forgotBtn{
+	text-decoration: underline;
+	background: none;
+	padding: 0;
+	border: none;
+}
+

@@ -1,9 +1,9 @@
 import styles from "../../styles/CreateShop.module.css";
 import { Form, FloatingLabel, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CREATE_SHOP } from "../../graphql/shopQueries";
 import { useMutation } from "@apollo/client";
-
+import { Country, State, City }  from 'country-state-city';
 const CreateShop = () => {
   const [createShop] = useMutation(CREATE_SHOP);
   const initialShopState = {
@@ -16,12 +16,17 @@ const CreateShop = () => {
     phone: "",
   };
 
-  const stateOptions: string[] = ["VA", "GA"];
-  const countryOptions: string[] = ["USA", "VIETNAM"];
+  // const stateOptions: string[] = State.getAllStates().map((e) => {return });
+  const countryOptions = Country.getAllCountries();
+  const [stateOptions, setStateOptions] = useState<string[]>([]);
   const [created, setCreated] = useState(false)
   const [currentShop, setCurrentShop] = useState(initialShopState);
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onInputChange = (e: any) => {
     const { name, value } = e.target;
+    if(name === "country"){
+      const receivedStates = State.getStatesOfCountry(value).map((state) => {return state.name})
+      setStateOptions(receivedStates)
+    }
     setCurrentShop({
       ...currentShop,
       [name]: value,
@@ -74,21 +79,21 @@ const CreateShop = () => {
           />
         </FloatingLabel>
         <Form.Group className="mb-3">
-          <Form.Select name="state">
-            <option>State</option>
-            {stateOptions.map((state) => (
-              <option key={state} value={state}>
-                {state}
+          <Form.Select name="country" onChange={onInputChange} value={currentShop.country}>
+            <option>Country</option>
+            {countryOptions.map((country) => (
+              <option key={country.isoCode} value={country.isoCode}>
+                {country.name}
               </option>
             ))}
           </Form.Select>
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Select>
-            <option>Country</option>
-            {countryOptions.map((country) => (
-              <option key={country} value={country}>
-                {country}
+          <Form.Select name="state" onChange={onInputChange} value={currentShop.state} disabled={stateOptions.length < 1}>
+            <option>State</option>
+            {stateOptions.map((state, index) => (
+              <option key={index} value={state}>
+                {state}
               </option>
             ))}
           </Form.Select>

@@ -9,6 +9,7 @@ const Signup = () => {
 		first_name: '',
 		last_name: '',
 	});
+	const [error, setError] = useState('');
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setState({
@@ -18,14 +19,21 @@ const Signup = () => {
 	};
 	const submit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		register(state);
+		try{
+			const result = await register(state);
+			if(!result.success){
+				setError(result.message)	
+			}
+		}catch(e){
+			return e
+		}
 	};
 	return (
 		<div className={styles.container}>
 			<div className={styles.inner}>
 				<form onSubmit={submit}>
 					<h3>Register</h3>
-
+					{error !== '' || error !== undefined ? (<p className={styles.errorMessage}>{error}</p>) : null}
 					<div className="form-group">
 						<label>First name</label>
 						<input
