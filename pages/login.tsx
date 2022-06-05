@@ -6,12 +6,11 @@ const Login = () => {
 	const [state, setState] = useState({
 		email: '',
 		password: '',
-		forgotEmail: ''
+		forgotEmail: '',
+		rememberMe: false
 	});
 
 	const [error, setError] = useState('');
-
-	const [remCheck, setRemCheck] = useState(false);
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const {name, value} = e.target;
@@ -21,8 +20,12 @@ const Login = () => {
 		});
 	};
 
-	const toggleRememberMe = (e: any) =>{
-		setRemCheck(e.target.checked);
+	const toggleRememberMe = () => {
+		setState({
+			...state,
+			rememberMe: !state.rememberMe,
+		});
+
 	}
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,7 +33,7 @@ const Login = () => {
 		const loginInfo = {
 			email: state.email,
 			password: state.password,
-			remembered: remCheck,
+			remembered: state.rememberMe,
 
 		}
 		try{
@@ -85,9 +88,11 @@ const Login = () => {
 						<div className="custom-control custom-checkbox">
 							<input
 								type="checkbox"
+								key={Math.random()}
 								className="custom-control-input"
 								name="remember"
 								onChange={toggleRememberMe}
+								checked={state.rememberMe}
 							/>
 							<label className="custom-control-label" htmlFor="customCheck1">
 								Remember me
