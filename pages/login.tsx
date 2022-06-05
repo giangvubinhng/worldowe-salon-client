@@ -6,8 +6,12 @@ const Login = () => {
 	const [state, setState] = useState({
 		email: '',
 		password: '',
-		forgotEmail: ''
+		forgotEmail: '',
+		rememberMe: false
 	});
+
+	const [error, setError] = useState('');
+
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const {name, value} = e.target;
 		setState({
@@ -16,13 +20,32 @@ const Login = () => {
 		});
 	};
 
+	const toggleRememberMe = () => {
+		setState({
+			...state,
+			rememberMe: !state.rememberMe,
+		});
+
+	}
+
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const loginInfo = {
 			email: state.email,
-			password: state.password
+			password: state.password,
+			remembered: state.rememberMe,
+
 		}
-		login(loginInfo);
+		try{
+			const result = await login(loginInfo);
+			if(!result.success){
+				setError(result.message);
+			}
+		}catch(e)
+		{
+			return e
+		}
+		
 	};
 
 	const sendForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,7 +59,7 @@ const Login = () => {
 			<div className={styles.inner}>
 				<form onSubmit={onSubmit}>
 					<h3>Log in</h3>
-
+					{error !== '' || error !== undefined ? (<p className={styles.errorMessage}>{error}</p>) : null}
 					<div className="form-group">
 						<label>Email</label>
 						<input
@@ -65,8 +88,11 @@ const Login = () => {
 						<div className="custom-control custom-checkbox">
 							<input
 								type="checkbox"
+								key={Math.random()}
 								className="custom-control-input"
-								id="customCheck1"
+								name="remember"
+								onChange={toggleRememberMe}
+								checked={state.rememberMe}
 							/>
 							<label className="custom-control-label" htmlFor="customCheck1">
 								Remember me
@@ -78,7 +104,7 @@ const Login = () => {
 						Sign in
 					</button>
 				</form>
-				<button onClick={() => setForgotClicked(true)}>Forgot password?</button>
+				<button className={styles.forgotBtn} onClick={() => setForgotClicked(true)}>Forgot password?</button>
 				<Modal size="sm" centered show={forgotClicked} onHide={() => setForgotClicked(false)}>
 					<Modal.Body>
 						<form onSubmit={sendForgotPassword}>
