@@ -1,4 +1,6 @@
 import React, {FC, useState} from 'react';
+import { GetServerSideProps } from 'next';
+import { ProtectedRoute } from '../components/HOC/ProtectedRoute';
 import {useAppSelector} from "../app/hooks";
 import Link from 'next/link';
 import {uploadProfilePic} from '../services/upload.service'
@@ -67,3 +69,13 @@ const Account: FC = () => {
 };
 
 export default Account;
+
+export const getServerSideProps: GetServerSideProps = ProtectedRoute(
+	async (ctx) => {
+		return {
+			props: {
+
+			},
+		}
+	}
+)
