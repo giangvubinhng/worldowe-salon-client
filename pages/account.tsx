@@ -23,7 +23,7 @@ const Account: FC = () => {
         }
         fetchQuery()
 
-	}, []);
+	}, [user.user_id]);
 
 	const [file, setFile] = useState<string | Blob>('');
 
@@ -33,6 +33,8 @@ const Account: FC = () => {
 		const result = await uploadProfilePic(file);
 		if (result){
 			setUploadSuccess(result)
+			const updated = await retrieveProfilePic(user.user_id)
+			setPicture(updated)
 		}
 	}
 
