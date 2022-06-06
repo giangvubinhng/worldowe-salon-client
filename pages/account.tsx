@@ -1,29 +1,13 @@
-import React, {FC, useState, useEffect} from 'react';
+import React, {FC, useState} from 'react';
 import {useAppSelector} from "../app/hooks";
 import Link from 'next/link';
-import {uploadProfilePic, retrieveProfilePic} from '../services/upload.service'
+import {uploadProfilePic} from '../services/upload.service'
 
+const URI = 'http://localhost:5000'
 
 const Account: FC = () => {
 
 	const user = useAppSelector((state) => state.user.value);
-	const  [picture, setPicture] = useState('')
-	useEffect(() => {
-
-        const fetchQuery = async () => {
-			if(user.user_id){
-				try{
-					const id = parseInt(user.user_id)
-					const result = await retrieveProfilePic(id)
-					setPicture(result)
-				}catch(e){
-					return e
-				}
-			}
-        }
-        fetchQuery()
-
-	}, [user.user_id]);
 
 	const [file, setFile] = useState<string | Blob>('');
 
@@ -33,8 +17,6 @@ const Account: FC = () => {
 		const result = await uploadProfilePic(file);
 		if (result){
 			setUploadSuccess(result)
-			const updated = await retrieveProfilePic(user.user_id)
-			setPicture(updated)
 		}
 	}
 
@@ -53,7 +35,7 @@ const Account: FC = () => {
 				{uploadSuccess.success ? <p>{uploadSuccess.message}</p> : null}
 				<div className="user-profile">
 					<div className="user-photo">
-						<img src={picture} height="250" width="250"></img>
+						<img src={`${URI}${user.profile_image}`} height="250" width="250"></img>
 					</div>
 
 					<div>

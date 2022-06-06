@@ -24,17 +24,3 @@ export const uploadProfilePic = async (file: string | Blob) => {
     }
 
 }
-
-export const retrieveProfilePic = async(id: number | string) => {
-
-    try{
-        const result = await axios.get(`${URI}/upload/profile`, {params: {id}})
-        if(result.status === 200){
-            return `${URI}${result.data.profile_image}`
-        }
-    }
-    catch(e: any){
-        return e.response.data
-    }
-
-}

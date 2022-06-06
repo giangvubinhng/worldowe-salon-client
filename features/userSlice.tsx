@@ -8,6 +8,7 @@ const initialStateValue: IUserBody = {
 	first_name: '',
 	last_name: '',
 	user_id: '',
+	profile_image: '',
 	is_loggedIn: false,
 };
 

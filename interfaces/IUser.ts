@@ -3,6 +3,7 @@ export interface IUserBody {
 	first_name: string;
 	last_name: string;
 	user_id: string;
+	profile_image: string;
 	is_loggedIn: boolean;
 }
 export interface IUserRegister {

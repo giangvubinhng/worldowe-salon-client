@@ -11,7 +11,7 @@ const Search: NextPage = () => {
     const client= initializeApollo()
     const router = useRouter();
     const [searchQuery, setSearchQuery] = useState('');
-    const [result, setResult] = useState();
+    const [foundShops, setFoundShops] = useState();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState();
 
@@ -22,7 +22,7 @@ const Search: NextPage = () => {
             if (!router.isReady) return;
             const name = router.query.name;
             const {loading, error, data} = await client.query({query: GET_SHOPS, variables: {name: name}})
-            setResult(data);
+            setFoundShops(data.shops);
             setLoading(loading);
             setError(error)
         }
@@ -56,7 +56,7 @@ const Search: NextPage = () => {
             </Button>
         </Form>
         <h2>Shops</h2>
-        <Shops data={result} loading={loading} error={error}/>
+        <Shops shops={foundShops} loading={loading} error={error}/>
     </div>)
 
 };

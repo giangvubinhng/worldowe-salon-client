@@ -4,11 +4,11 @@ import Card from "../components/Card";
 import {IShopBody} from "../interfaces/IShop";
 
 interface props {
-	data: any;
+	shops: any;
 	loading: boolean;
 	error: any
 }
-const Shops: NextPage<props> = ({data, loading, error}) => {
+const Shops: NextPage<props> = ({shops, loading, error}) => {
 
 	return (
 		<div>
@@ -17,12 +17,12 @@ const Shops: NextPage<props> = ({data, loading, error}) => {
 			{error
 				? (<p>Error</p>) : null}
 
-			{data && data.shops.length > 0
-				? data.shops.map((shop: IShopBody) => (
+			{shops && shops.length > 0
+				? shops.map((shop: IShopBody) => (
 					<Card shop={shop} key={shop.id}/>
 				))
 				: null}
-			{data && data.shops.length === 0 ? (<p>No shop found</p>) : null}
+			{shops && shops.length === 0 ? (<p>No shop found</p>) : null}
 		</div>
 	);
 };
