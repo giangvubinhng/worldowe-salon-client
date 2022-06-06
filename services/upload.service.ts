@@ -4,11 +4,7 @@ interface GET_RESPONSE {
     message: string;
     profile_image: string;
 }
-const URI = 'http://localhost:5000/upload'
-const PICTURE_DB = 'http://localhost:5000/uploads/profiles'
-interface FILE {
-    file: string | Blob;
-}
+const URI = 'http://localhost:5000'
 
 export const uploadProfilePic = async (file: string | Blob) => {
 
@@ -21,7 +17,7 @@ export const uploadProfilePic = async (file: string | Blob) => {
         withCredentials: true
     }
     try{
-        const result = await axios.post(`${URI}/profile`, formData, config)
+        const result = await axios.post(`${URI}/upload/profile`, formData, config)
         return result.data
     } catch(e: any){
         return e.reponse.data
@@ -32,9 +28,9 @@ export const uploadProfilePic = async (file: string | Blob) => {
 export const retrieveProfilePic = async(id: number | string) => {
 
     try{
-        const result = await axios.get(`${URI}/profile`, {params: {id}})
+        const result = await axios.get(`${URI}/upload/profile`, {params: {id}})
         if(result.status === 200){
-            return `${PICTURE_DB}/${result.data.profile_image}`
+            return `${URI}${result.data.profile_image}`
         }
     }
     catch(e: any){
