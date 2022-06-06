@@ -5,7 +5,7 @@ import {initializeApollo} from '../../Apollo/client'
 import {GET_SHOPS} from "../../graphql/shopQueries";
 import { Form, FormControl, Button } from 'react-bootstrap';
 import Shops from '../../components/Shops';
-import styles from '../../styles/Home.module.css';
+import styles from '../../styles/search.module.css';
 const Search: NextPage = () => {
     // Declare vars and useStates
     const client= initializeApollo()
@@ -42,7 +42,7 @@ const Search: NextPage = () => {
 		setSearchQuery(e.target.value);
 	};
     // Return view
-    return (<div className={styles.main}>
+    return (<div className={styles.container}>
         <Form className="d-flex" onSubmit={handleSearch}>
             <FormControl
                 type="search"
@@ -56,7 +56,9 @@ const Search: NextPage = () => {
             </Button>
         </Form>
         <h2>Shops</h2>
+        <div className={styles.cardContainer}>
         <Shops shops={foundShops} loading={loading} error={error}/>
+        </div>
     </div>)
 
 };

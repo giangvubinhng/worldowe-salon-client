@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import {IShopBody} from "../interfaces/IShop";
 
 interface props {
-	shops: any;
+	shops?: any;
 	loading: boolean;
 	error: any
 }

@@ -22,16 +22,11 @@
     flex-grow: 1;
 }
 
-.Bcard { 
-    width: 40rem;
-    height: auto;
-    margin: 10px auto;
-    background-color: #cce3de;
+.cardContainer { 
+    width: 50%;
+    margin: 0 auto;
 }
 
-.Bcard:hover {
-    background-color: #a4c3b2;
-}
 
 .Button {
     background-color: #84a59d;
