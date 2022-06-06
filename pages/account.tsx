@@ -1,19 +1,57 @@
-import React, {FC} from 'react';
+import React, {FC, useState, useEffect} from 'react';
 import {useAppSelector} from "../app/hooks";
-
 import Link from 'next/link';
+import {uploadProfilePic, retrieveProfilePic} from '../services/upload.service'
 
 
 const Account: FC = () => {
 
 	const user = useAppSelector((state) => state.user.value);
+	const  [picture, setPicture] = useState('')
+	useEffect(() => {
+
+        const fetchQuery = async () => {
+			if(user.user_id){
+				try{
+					const id = parseInt(user.user_id)
+					const result = await retrieveProfilePic(id)
+					setPicture(result)
+				}catch(e){
+					return e
+				}
+			}
+        }
+        fetchQuery()
+
+	}, []);
+
+	const [file, setFile] = useState<string | Blob>('');
+
+	const [uploadSuccess, setUploadSuccess] = useState<any>({});
+	const handleUpload = async (e: any) => {
+		e.preventDefault();
+		const result = await uploadProfilePic(file);
+		if (result){
+			setUploadSuccess(result)
+		}
+	}
+
+	const onInputChange = (e: any) => {
+		setFile(e.target.files[0])
+	}
+
 
 	return (
 		<div>
 			<div className="top">
+				<form onSubmit={handleUpload}>
+					<input type="file" name="profile_pic" onChange={onInputChange}/>
+					<button type="submit" >Update profile picture</button>
+				</form>
+				{uploadSuccess.success ? <p>{uploadSuccess.message}</p> : null}
 				<div className="user-profile">
 					<div className="user-photo">
-						<img src="https://www.lenco-marine.com/wp-content/uploads/2021/04/user.png" height="250" width="250"></img>
+						<img src={picture} height="250" width="250"></img>
 					</div>
 
 					<div>

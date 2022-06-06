@@ -51,7 +51,6 @@ const Login = () => {
 	const sendForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const result = forgetPassword(state.forgotEmail)
-		console.log(result)
 	}
 	const [forgotClicked, setForgotClicked] = useState(false);
 	return (
