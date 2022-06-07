@@ -2,6 +2,8 @@ import { NextPage } from "next";
 import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { useQuery } from "@apollo/client";
+import { AuthorizedRoute } from "../../../../components/HOC/AuthorizedRoute";
+import { GetServerSideProps } from 'next';
 import { GET_MY_SHOPS } from "../../../../graphql/shopQueries";
 import styles from '../../../../styles/MyShop.module.css';
 import Shops from "../../../../components/Shops";
@@ -23,3 +25,13 @@ const MyShops: NextPage = () => {
 };
 export default MyShops;
 
+
+export const getServerSideProps: GetServerSideProps = AuthorizedRoute(
+	async (ctx) => {
+		return {
+			props: {
+
+			},
+		}
+	}
+)
