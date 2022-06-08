@@ -64,3 +64,15 @@ export const changePassword = async (oldPassword: string, newPassword: string) =
 		return e.response.data
 	}
 }
+
+export const verifyUserAccount = async (code: string | string[] | undefined) => {
+	try{
+		const {data} = await axios.get(
+			`${URI}/verify/${code}`
+		);
+		return data.message
+	}catch(e: any){
+		return e.response.data
+	}
+
+}

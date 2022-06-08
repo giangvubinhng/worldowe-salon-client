@@ -5,6 +5,7 @@ import {
 	Nav,
 	Navbar as BNavbar,
 	NavDropdown,
+	Spinner
 } from 'react-bootstrap';
 import styles from '../styles/Navbar.module.css';
 import { IUserBody } from '../interfaces/IUser';
@@ -12,9 +13,10 @@ import { logout } from '../services/user.service';
 
 interface props {
 	user: IUserBody;
+	isLoading: boolean;
 }
 
-const Navbar: React.FC<props> = ({ user }) => {
+const Navbar: React.FC<props> = ({ user, isLoading }) => {
 	return (
 		<div className={styles.navbarContainer}>
 			<BNavbar
@@ -33,7 +35,8 @@ const Navbar: React.FC<props> = ({ user }) => {
 									<h4 className={styles.navLink}>Home</h4>
 								</Nav.Link>
 							</Link>
-							{user.is_loggedIn ? (
+							{isLoading ? <Spinner animation="grow" /> : null}
+							{user.is_loggedIn && !isLoading ? (
 								<>
 									<NavDropdown
 										className={styles.navDropDown}
@@ -59,7 +62,8 @@ const Navbar: React.FC<props> = ({ user }) => {
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>
 								</>
-							) : (
+							) : null }
+							{!user.is_loggedIn && !isLoading ? (
 								<>
 									<Link href="/login" passHref>
 										<Nav.Link>
@@ -72,7 +76,7 @@ const Navbar: React.FC<props> = ({ user }) => {
 										</Nav.Link>
 									</Link>
 								</>
-							)}
+							) : null}
 						</Nav>
 					</BNavbar.Collapse>
 				</Container>

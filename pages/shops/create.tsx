@@ -1,6 +1,8 @@
 import styles from "../../styles/CreateShop.module.css";
+import { GetServerSideProps } from 'next';
+import { ProtectedRoute } from "../../components/HOC/ProtectedRoute";
 import { Form, FloatingLabel, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CREATE_SHOP } from "../../graphql/shopQueries";
 import { useMutation } from "@apollo/client";
 import { Country, State, City }  from 'country-state-city';
@@ -130,3 +132,13 @@ const CreateShop = () => {
 };
 
 export default CreateShop;
+
+export const getServerSideProps: GetServerSideProps = ProtectedRoute(
+	async (ctx) => {
+		return {
+			props: {
+
+			},
+		}
+	}
+)
