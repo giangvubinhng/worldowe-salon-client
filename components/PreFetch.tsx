@@ -21,7 +21,9 @@ const PreFetch: NextPage = ({children}) => {
 				<Navbar user={user} isLoading={isLoading} />
 			</div>
 			<div className={styles.bodyContainer}>
-				<main>{children}</main>
+				<div className={styles.innerBodyContainer}>
+					<main>{children}</main>
+				</div>
 			</div>
 			<div className={styles.footerContainer}>
 				<Footer />

@@ -1,6 +1,9 @@
 .navbar {
-	background-color: rgba(216, 226, 220);
+	top: 0;
 	width: 100%;
+}
+.navbarBg {
+	background-color: rgba(216, 226, 220);
 }
 .navLink {
 	font-family: 'Montserrat', sans-serif;

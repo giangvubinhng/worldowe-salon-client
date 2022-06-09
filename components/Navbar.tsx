@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React from 'react';
+import React, {useState} from 'react';
 import {
 	Container,
 	Nav,
@@ -8,21 +8,35 @@ import {
 	Spinner
 } from 'react-bootstrap';
 import styles from '../styles/Navbar.module.css';
-import { IUserBody } from '../interfaces/IUser';
-import { logout } from '../services/user.service';
+import {IUserBody} from '../interfaces/IUser';
+import {logout} from '../services/user.service';
 
 interface props {
 	user: IUserBody;
 	isLoading: boolean;
 }
 
-const Navbar: React.FC<props> = ({ user, isLoading }) => {
+const Navbar: React.FC<props> = ({user, isLoading}) => {
+
+	//change nav color when scrolling
+	const [color, setColor] = useState(false)
+	const changeColor = () => {
+		if (window.scrollY >= 90) {
+			setColor(true)
+		}
+		else {
+			setColor(false)
+		}
+	}
+	if (typeof window !== "undefined") {
+		window.addEventListener('scroll', changeColor)
+	}
 	return (
 		<div className={styles.navbarContainer}>
 			<BNavbar
 				collapseOnSelect
 				expand="lg"
-				className={styles.navbar}
+				className={color ? `${styles.navbar} ${styles.navbarBg} fixed-top` : `${styles.navbar} fixed-top`}
 			>
 				<Container>
 					<Link href="/" passHref><BNavbar.Brand>Worldowe</BNavbar.Brand></Link>
@@ -50,7 +64,7 @@ const Navbar: React.FC<props> = ({ user, isLoading }) => {
 											</NavDropdown.Item>
 										</Link>
 
-										
+
 										<Link href={`/account`} passHref>
 											<NavDropdown.Item>
 												Account
@@ -58,11 +72,11 @@ const Navbar: React.FC<props> = ({ user, isLoading }) => {
 										</Link>
 
 										<NavDropdown.Divider />
-										
+
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>
 								</>
-							) : null }
+							) : null}
 							{!user.is_loggedIn && !isLoading ? (
 								<>
 									<Link href="/login" passHref>
