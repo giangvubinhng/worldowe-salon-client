@@ -1,9 +1,14 @@
 .Bcard {
     height: auto;
     margin: 10px;
+    
     background-color: #cce3de;
 }
 
+.flexboxContainer{
+    display: flex;
+    justify-content: space-between;   
+}
 .Bcard:hover {
     background-color: #a4c3b2;
 }
