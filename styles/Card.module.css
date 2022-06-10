@@ -22,3 +22,8 @@
     color: #598392;
     background-color: #dedbd2;
 }
+.CardPhoto{
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+}

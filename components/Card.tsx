@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { Col } from 'react-bootstrap';
+import { CardImg, Col } from 'react-bootstrap';
 import { Card as BCard, Button } from 'react-bootstrap';
 import { IShopBody } from '../interfaces/IShop';
 import styles from '../styles/Card.module.css';
@@ -30,7 +30,7 @@ const Card: NextPage<props> = ({ shop }) => {
 								<Button className={styles.Button}>Go To Shop</Button></a>
 						</div>
 						<div className={styles.photo}>
-							<img src="https://source.unsplash.com/user/c_v_r" alt="Free unsplash image" width={200} height={200}></img>
+							<img src="https://source.unsplash.com/user/c_v_r" alt="Free unsplash image" className={styles.CardPhoto}></img>
 						</div>
 					</div>
 				</BCard.Body>
