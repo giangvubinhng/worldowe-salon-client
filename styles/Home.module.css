@@ -1,9 +1,10 @@
 .main {
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background-image: url(https://get.pxhere.com/photo/silhouette-beauty-salon-hair-salon-hairdressing-hair-hairdresser-spa-cosmetics-barber-barbershop-beautiful-care-face-glamour-haircut-health-makeup-style-stylist-woman-black-and-white-human-behavior-monochrome-monochrome-photography-font-communication-illustration-art-1445937.jpg);
 }
