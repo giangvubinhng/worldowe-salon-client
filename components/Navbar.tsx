@@ -9,12 +9,14 @@ import {
 import styles from '../styles/Navbar.module.css';
 import { IUserBody } from '../interfaces/IUser';
 import { logout } from '../services/user.service';
+import LoadingOverlay from './LoadingOverlay';
 
 interface props {
 	user: IUserBody;
+	isLoaded?: boolean;
 }
 
-const Navbar: React.FC<props> = ({ user }) => {
+const Navbar: React.FC<props> = ({ user, isLoaded }) => {
 	return (
 		<div className={styles.navbarContainer}>
 			<BNavbar
@@ -33,7 +35,22 @@ const Navbar: React.FC<props> = ({ user }) => {
 									<h4 className={styles.navLink}>Home</h4>
 								</Nav.Link>
 							</Link>
-							{user.is_loggedIn ? (
+							{!isLoaded ? <LoadingOverlay/> : null}	
+							{!user.is_loggedIn && isLoaded ? (
+								<>
+									<Link href="/login" passHref>
+										<Nav.Link>
+											<h4 className={styles.navLink}>Sign In</h4>
+										</Nav.Link>
+									</Link>
+									<Link href="/signup" passHref>
+										<Nav.Link>
+											<h4 className={styles.navLink}>Sign Up</h4>
+										</Nav.Link>
+									</Link>
+								</>
+							) : null}
+							{user.is_loggedIn && isLoaded ? (
 								<>
 									<NavDropdown
 										className={styles.navDropDown}
@@ -59,20 +76,7 @@ const Navbar: React.FC<props> = ({ user }) => {
 										<NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
 									</NavDropdown>
 								</>
-							) : (
-								<>
-									<Link href="/login" passHref>
-										<Nav.Link>
-											<h4 className={styles.navLink}>Sign In</h4>
-										</Nav.Link>
-									</Link>
-									<Link href="/signup" passHref>
-										<Nav.Link>
-											<h4 className={styles.navLink}>Sign Up</h4>
-										</Nav.Link>
-									</Link>
-								</>
-							)}
+							) : null}
 						</Nav>
 					</BNavbar.Collapse>
 				</Container>
