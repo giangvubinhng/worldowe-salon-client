@@ -1,7 +1,7 @@
 import React from "react";
 import {NextPage} from "next";
-import Card from "../components/Card";
-import {IShopBody} from "../interfaces/IShop";
+import Card from "./Card";
+import {IShopBody} from "@/interfaces/IShop";
 
 interface props {
 	shops?: any;

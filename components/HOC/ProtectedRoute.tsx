@@ -1,5 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import { IUserBody } from '../../interfaces/IUser';
+import { IUserBody } from '@/interfaces/IUser';
 import cookie from 'cookie';
 import axios from 'axios';
 

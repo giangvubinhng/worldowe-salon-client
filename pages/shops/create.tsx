@@ -1,7 +1,7 @@
-import styles from "../../styles/CreateShop.module.css";
+import styles from "@/styles/CreateShop.module.css";
 import { Form, FloatingLabel, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { CREATE_SHOP } from "../../graphql/shopQueries";
+import { CREATE_SHOP } from "@/graphql/shopQueries";
 import { useMutation } from "@apollo/client";
 import { Country, State, City }  from 'country-state-city';
 const CreateShop = () => {

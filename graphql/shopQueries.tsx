@@ -1,5 +1,4 @@
 import {gql} from "@apollo/client";
-import {ICreateShopBody} from "../interfaces/IShop";
 export const GET_SHOPS = gql`
   query shops($name: String) {
     shops(name: $name) {

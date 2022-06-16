@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {changePassword} from '../../../services/user.service';
-import {IReturnObject} from '../../../interfaces/IBasicReturnTypeObject';
+import {changePassword} from '@/services/user.service';
+import {IReturnObject} from '@/interfaces/IBasicReturnTypeObject';
 const PasswordChange = () => {
 
 	let InitialReturnObject: IReturnObject = {

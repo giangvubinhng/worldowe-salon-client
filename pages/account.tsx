@@ -1,9 +1,9 @@
 import React, {FC, useState} from 'react';
 import { GetServerSideProps } from 'next';
-import { ProtectedRoute } from '../components/HOC/ProtectedRoute';
+import { ProtectedRoute } from '@/components/HOC/ProtectedRoute';
 import {useAppSelector} from "../app/hooks";
 import Link from 'next/link';
-import {uploadProfilePic} from '../services/upload.service'
+import {uploadProfilePic} from '@/services/upload.service'
 
 const URI = 'http://localhost:5000'
 

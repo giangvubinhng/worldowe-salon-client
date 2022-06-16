@@ -6,9 +6,9 @@ import {
 	Navbar as BNavbar,
 	NavDropdown,
 } from 'react-bootstrap';
-import styles from '../styles/Navbar.module.css';
-import { IUserBody } from '../interfaces/IUser';
-import { logout } from '../services/user.service';
+import styles from '@/styles/Navbar.module.css';
+import { IUserBody } from '@/interfaces/IUser';
+import { logout } from '@/services/user.service';
 import LoadingOverlay from './LoadingOverlay';
 
 interface props {

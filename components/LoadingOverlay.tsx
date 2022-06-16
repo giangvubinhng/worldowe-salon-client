@@ -1,5 +1,5 @@
 import {NextPage} from 'next';
-import styles from "../styles/loading.module.css"
+import styles from "@/styles/loading.module.css"
 
 
 

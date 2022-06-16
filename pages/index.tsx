@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { useState } from 'react';
 import {useRouter} from "next/router"
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import styles from '@/styles/Home.module.css';
 import { Form, FormControl, Button } from 'react-bootstrap';
 
 const Home: NextPage = () => {
