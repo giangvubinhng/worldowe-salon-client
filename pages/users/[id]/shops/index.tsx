@@ -15,7 +15,7 @@ const MyShops: NextPage = () => {
 		e.preventDefault()
 		router.push(`/shops/create`)
 	}
-	return (<div>
+	return (<div className={styles.container}>
 		<h2 className={styles.h2}>
 			This is My Shop
 			<Button className={styles.createButton} variant="outline-success" type="submit" onClick={createShopClick}>Create a new Shop</Button>
