@@ -36,7 +36,7 @@ const Navbar: React.FC<props> = ({user, isLoading}) => {
 			<BNavbar
 				collapseOnSelect
 				expand="lg"
-				className={color ? `${styles.navbar} ${styles.navbarBg} fixed-top` : `${styles.navbar} fixed-top`}
+				className={color ? `${styles.navbar} ${styles.navbarBg}` : `${styles.navbar}`}
 			>
 				<Container>
 					<Link href="/" passHref><BNavbar.Brand>Worldowe</BNavbar.Brand></Link>

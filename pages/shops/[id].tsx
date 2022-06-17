@@ -5,7 +5,9 @@ import {NextPage} from 'next';
 import {IShopBody} from '../../interfaces/IShop';
 import {useRouter} from 'next/router'
 import Spinner from 'react-bootstrap/Spinner'
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
+import {useAppSelector} from '../../app/hooks'
+import {Button} from 'react-bootstrap'
 
 interface resultBody {
 	success: boolean,
@@ -14,17 +16,33 @@ interface resultBody {
 }
 //doc : https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js
 
-const ShopPage = () => {
+const ShopPage: NextPage = () => {
 	const router = useRouter();
 	const id = router.query.id
 	const numId = parseInt(id as string)
+	const user = useAppSelector((state) => state.user.value);
+	const [isAdmin, setIsAdmin] = useState(false)
 
 	const {loading, error, data} = useQuery(GET_CURRENT_SHOP, {variables: {id: numId}});
+
+	useEffect(() => {
+		if (data) {
+			if (user.user_id === data.shop.user_id) {
+				setIsAdmin(true)
+			}
+		}
+	}, [data])
 
 	if (loading) return <div><Spinner animation="grow" /></div>
 	if (error) return <div> error </div>
 	if (!data) return <div> empty </div>
-	return <div className={styles.container}> Welcome to {data.shop?.shop_name}</div>
+	return <div className={styles.container}>
+		{isAdmin ? (<div>
+			<Button onClick={() => {console.log("this should open services modal")}}>Add services</Button>
+			<Button onClick={() => {console.log("this should open technicians modal")}}>Add technicians</Button>
+		</div>) : null}
+		<div> Welcome to {data.shop?.shop_name}</div>
+	</div>
 }
 
 export default ShopPage
