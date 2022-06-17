@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import styles from '../styles/Signup.module.css';
-import { register } from '../services/user.service';
+import styles from '@/styles/Signup.module.css';
+import { register } from '@/services/user.service';
 const Signup = () => {
 	const [state, setState] = useState({
 		email: '',

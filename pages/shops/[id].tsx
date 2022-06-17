@@ -1,11 +1,9 @@
-import styles from '../../styles/ShopDetail.module.css';
+import styles from '@/styles/ShopDetail.module.css';
 import {useQuery} from "@apollo/client";
-import {GET_CURRENT_SHOP} from "../../graphql/shopQueries";
-import {NextPage} from 'next';
-import {IShopBody} from '../../interfaces/IShop';
+import {GET_CURRENT_SHOP} from "@/graphql/shopQueries";
+import {IShopBody} from '@/interfaces/IShop';
 import {useRouter} from 'next/router'
 import Spinner from 'react-bootstrap/Spinner'
-import {useEffect} from 'react';
 
 interface resultBody {
 	success: boolean,

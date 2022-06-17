@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {IUserRegister} from '../interfaces/IUser';
+import {IUserRegister} from '@/interfaces/IUser';
 
 const URI = 'http://localhost:5000/api/user'
 

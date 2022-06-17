@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
 import { CardImg, Col } from 'react-bootstrap';
 import { Card as BCard, Button } from 'react-bootstrap';
-import { IShopBody } from '../interfaces/IShop';
-import styles from '../styles/Card.module.css';
+import { IShopBody } from '@/interfaces/IShop';
+import styles from '@/styles/Card.module.css';
 
 interface props {
 	shop: IShopBody;

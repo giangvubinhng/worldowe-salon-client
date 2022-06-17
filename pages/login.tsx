@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import styles from '../styles/Login.module.css';
-import {login, forgetPassword} from '../services/user.service';
+import styles from '@/styles/Login.module.css';
+import {login, forgetPassword} from '@/services/user.service';
 import {Modal} from 'react-bootstrap'
 const Login = () => {
 	const [state, setState] = useState({

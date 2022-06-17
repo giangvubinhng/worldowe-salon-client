@@ -2,11 +2,11 @@ import { NextPage } from "next";
 import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router'
 import { useQuery } from "@apollo/client";
-import { AuthorizedRoute } from "../../../../components/HOC/AuthorizedRoute";
+import { AuthorizedRoute } from "@/components/HOC/AuthorizedRoute";
 import { GetServerSideProps } from 'next';
-import { GET_MY_SHOPS } from "../../../../graphql/shopQueries";
-import styles from '../../../../styles/MyShop.module.css';
-import Shops from "../../../../components/Shops";
+import { GET_MY_SHOPS } from "@/graphql/shopQueries";
+import styles from '@/styles/MyShop.module.css';
+import Shops from "@/components/Shops";
 
 const MyShops: NextPage = () => {
 	const router = useRouter()
@@ -15,7 +15,7 @@ const MyShops: NextPage = () => {
 		e.preventDefault()
 		router.push(`/shops/create`)
 	}
-	return (<div>
+	return (<div className={styles.container}>
 		<h2 className={styles.h2}>
 			This is My Shop
 			<Button className={styles.createButton} variant="outline-success" type="submit" onClick={createShopClick}>Create a new Shop</Button>

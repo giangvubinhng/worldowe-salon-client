@@ -1,11 +1,11 @@
 import {NextPage} from "next";
 import { useState, useEffect } from 'react';
 import {useRouter} from "next/router";
-import {initializeApollo} from '../../Apollo/client'
-import {GET_SHOPS} from "../../graphql/shopQueries";
+import {initializeApollo} from '@/Apollo/client'
+import {GET_SHOPS} from "@/graphql/shopQueries";
 import { Form, FormControl, Button } from 'react-bootstrap';
-import Shops from '../../components/Shops';
-import styles from '../../styles/search.module.css';
+import Shops from '@/components/Shops';
+import styles from '@/styles/search.module.css';
 const Search: NextPage = () => {
     // Declare vars and useStates
     const client= initializeApollo()

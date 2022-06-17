@@ -1,9 +1,10 @@
 import React, {FC, useState} from 'react';
 import { GetServerSideProps } from 'next';
-import { ProtectedRoute } from '../components/HOC/ProtectedRoute';
+import { ProtectedRoute } from '@/components/HOC/ProtectedRoute';
 import {useAppSelector} from "../app/hooks";
 import Link from 'next/link';
-import {uploadProfilePic} from '../services/upload.service'
+import {uploadProfilePic} from '@/services/upload.service'
+import styles from '@/styles/account.module.css'
 
 const URI = 'http://localhost:5000'
 
@@ -28,7 +29,7 @@ const Account: FC = () => {
 
 
 	return (
-		<div>
+		<div className={styles.bodyContainer}>
 			<div className="top">
 				<form onSubmit={handleUpload}>
 					<input type="file" name="profile_pic" onChange={onInputChange}/>
