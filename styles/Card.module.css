@@ -1,7 +1,7 @@
 .Bcard {
     height: auto;
     margin: 10px;
-    
+    transition: box-shadow .2s;
     background-color: #cce3de;
 }
 
@@ -11,10 +11,11 @@
 }
 .Bcard:hover {
     background-color: #a4c3b2;
+    box-shadow: 0 0 20px rgba(33,33,33,.2); 
 }
 
 .Button {
-    background-color: #84a59d;
+    background-color: #84a59d !important;
     border-color: #faedcd;
 }
 
