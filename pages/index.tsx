@@ -4,8 +4,17 @@ import {useRouter} from "next/router"
 import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
 import { Form, FormControl, Button } from 'react-bootstrap';
+import homeImage from "@/public/hero.png"
+import { GetStaticProps } from 'next';
+import {initializeApollo} from '@/Apollo/client'
+import {GET_SHOPS} from "@/graphql/shopQueries";
+import { IShopBody } from '@/interfaces/IShop';
+import RecommendedShops from '@/components/RecommendedShops'
 
-const Home: NextPage = () => {
+interface props{
+	shops: IShopBody[];
+}
+const Home: NextPage<props> = ({shops}) => {
 	// Declare variables and states
 	const router = useRouter()
 	const [searchQuery, setSearchQuery] = useState('');
@@ -27,21 +36,65 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className={styles.main}>
-				<Form className="d-flex" onSubmit={handleSearch}>
-					<FormControl
-						type="search"
-						placeholder="Search"
-						className="me-2"
-						aria-label="Search"
-						onChange={onInputChange}
-					/>
-					<Button variant="outline-success" type="submit">
-						Search
-					</Button>
-				</Form>
+				<section className={styles.hero}>
+					<div className={styles.background}>
+						<img className={styles.srcImg} src={homeImage.src} alt="" />
+					</div>
+					<div className={styles.content}>
+						<div className={styles.text}>
+							<h1 className={styles.title}>WORLDOWE</h1>
+							<p className={styles.info}>
+								Locate your nearest salons
+							</p>
+						</div>
+						<div className={styles.searchContainer}>
+							<Form className="d-flex" onSubmit={handleSearch}>
+								<FormControl
+									type="search"
+									placeholder="Search"
+									className={`me-2 ${styles.searchBar}`}
+									aria-label="Search"
+									onChange={onInputChange}
+								/>
+								<Form.Select
+									aria-label="Search"
+									className={`me-2 ${styles.optionBar}`}
+									size="sm"
+								>
+									<option>Hair Salon</option>
+									<option>Nail Salon</option>
+									<option>Spa</option>
+								</Form.Select>
+								<Button variant="outline-success" type="submit">
+									Search
+								</Button>
+							</Form>
+						</div>
+
+					</div>
+				</section>
+				<section>
+					<div className={styles.shopsContainer}>
+						<div className={styles.sectionTwo}>
+							<h2 className={styles.title}>Recommended Salons Around You</h2>
+						</div>
+						<RecommendedShops shops={shops}/>
+					</div>
+				</section>
 			</main>
 		</div>
 	);
 };
 
 export default Home;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+	const prefetch = true;
+	const client = initializeApollo(null, prefetch);
+    const {data} = await client.query({query: GET_SHOPS, variables: {name: "Giang"}})
+	return {
+		props: {
+			shops: data.shops 
+		}
+	}
+}
