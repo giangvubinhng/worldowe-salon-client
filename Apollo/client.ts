@@ -14,14 +14,17 @@ import isEqual from 'lodash/isEqual'
 //export default client;
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
+const PREFETCH_URI = `http://172.28.0.1:5000`
+const URI = `http://localhost:5000`
 
 let apolloClient: any;
 
-function createApolloClient() {
+function createApolloClient(prefetch = false) {
+	const API = prefetch ? PREFETCH_URI : URI ;
 	return new ApolloClient({
 		ssrMode: typeof window === 'undefined',
 		link: new HttpLink({
-			uri: 'http://localhost:5000/api/graphql', // Server URL (must be absolute)
+			uri: `${API}/api/graphql`, // Server URL (must be absolute)
 			credentials: 'include', // Additional fetch() options like `credentials` or `headers`
 		}),
 		cache: new InMemoryCache({
@@ -36,8 +39,8 @@ function createApolloClient() {
 	})
 }
 
-export function initializeApollo(initialState = null) {
-	const _apolloClient = apolloClient ?? createApolloClient()
+export function initializeApollo(initialState = null , prefetch = false) {
+	const _apolloClient = apolloClient ?? createApolloClient(prefetch)
 
 	// If your page has Next.js data fetching methods that use Apollo Client, the initial state
 	// gets hydrated here
