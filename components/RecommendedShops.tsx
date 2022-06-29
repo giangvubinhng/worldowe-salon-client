@@ -26,8 +26,8 @@ const RecommendedShops: NextPage<props> = ({shops, loading, error}) => {
 					<Container fluid="lg">
 					<Row lg={3}>
 
-						{shops.map((shop: IShopBody) => (
-						<Col>
+						{shops.map((shop: IShopBody, index: number ) => (
+						<Col key={index}>
 						<GeneralCard title={shop.shop_name} info={shop.street}  key={shop.id}/></Col>
 				))}</Row></Container></div>)
 				: null}
