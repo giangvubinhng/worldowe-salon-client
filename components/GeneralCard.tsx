@@ -13,7 +13,6 @@ const GeneralCard: NextPage<props> = (props) => {
 
 	return (
 		<div className={styles.container}>
-            <a target="_blank" href={`${props.routeTo}`} rel="noopener noreferrer">
                 <Card style={{ width: '18rem' }}>
                     <Card.Img variant="top" src="https://www.mountsinai.on.ca/wellbeing/images/image-placeholder/image" />
                     <Card.Body>
@@ -28,7 +27,6 @@ const GeneralCard: NextPage<props> = (props) => {
                         ) : null }
                     </Card.Body>
                 </Card>
-            </a>
 		</div>
 	);
 };

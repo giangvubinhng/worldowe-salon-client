@@ -37,6 +37,7 @@
 }
 .title{
 	font-family: 'Montserrat', sans-serif;
+	font-size: 3rem;
 	letter-spacing: 0.2rem;
 }
 .info{
@@ -69,6 +70,9 @@
 	}
 	.srcImg{
 		height: 100%;
+	}
+	.title{
+		font-size: 2rem;
 	}
 	
 }
