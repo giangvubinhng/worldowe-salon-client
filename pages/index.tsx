@@ -10,6 +10,7 @@ import {initializeApollo} from '@/Apollo/client'
 import {GET_SHOPS} from "@/graphql/shopQueries";
 import { IShopBody } from '@/interfaces/IShop';
 import RecommendedShops from '@/components/RecommendedShops'
+import About from '@/components/About'
 
 interface props{
 	shops: IShopBody[];
@@ -75,10 +76,16 @@ const Home: NextPage<props> = ({shops}) => {
 				</section>
 				<section>
 					<div className={styles.shopsContainer}>
+						<h2 className={styles.sectionName}>Recommended Salons Around You</h2>
 						<div className={styles.sectionTwo}>
-							<h2 className={styles.title}>Recommended Salons Around You</h2>
 						</div>
 						<RecommendedShops shops={shops}/>
+					</div>
+				</section>
+				<section>
+					<div>
+						<h2 className={styles.sectionName}>About us</h2>
+						<About/>
 					</div>
 				</section>
 			</main>
