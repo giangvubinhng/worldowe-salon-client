@@ -30,8 +30,8 @@ const Account: FC = () => {
 
 	return (
 		<div className={styles.bodyContainer}>
-			<div className="top">
-				<div className="user-profile">
+			{/* <div className="top"> */}
+				{/* <div className="user-profile">
 					<div className={styles.userPhoto}>
 						<img src={`${URI}${user.profile_image}`} height="250" width="250" className="styles.avatar"></img>
 					</div>
@@ -46,10 +46,10 @@ const Account: FC = () => {
 							{uploadSuccess.success ? <p>{uploadSuccess.message}</p> : null}
 						</a>
 					</div>
-				</div>
+				</div> */}
 
-				<div>
-					<h3>Shop's info</h3>
+				{/* <div className={styles.wrapper}>
+					<h3>About</h3>
 					<div className={styles.userInfo}>
 						<p>First Name: </p>
 						<p>{user.first_name}</p>
@@ -65,8 +65,55 @@ const Account: FC = () => {
 
 
 
-				</div>
+				</div> */}
 
+				<div className="container emp-profile">
+					<div className="padding">
+						<div className="row container d-flex justify-content-center">
+						<div className="row m-1-0 m-r-0">
+							<div className="col-xl-4 col-md-12">
+									<div className="col-sm-4">
+										<div className="card-block text-center text-white">
+											<img src={`${URI}${user.profile_image}`} height="250" width="250" className="styles.avatar"></img>
+											<form onSubmit={handleUpload}>
+												<input type="file" name="profile_pic" onChange={onInputChange} />
+												<button type="submit" >Update profile picture</button>
+											</form>
+											{uploadSuccess.success ? <p>{uploadSuccess.message}</p> : null}
+										</div>
+									</div>
+								</div>
+								<div className="col-md-6">
+									<div className="profile-head">
+										<h5>About</h5>
+										<div className="profile-rating mt-3 mb-5">
+											<div className="row">
+												<div className="col-md-4">
+													<label>First Name: </label>
+												</div>
+												<div className="col-md-6">
+													<label>{user.first_name}</label>
+												</div>
+												<div className="col-md-4">
+													<label>Last Name: </label>
+												</div>
+												<div className="col-md-6">
+													<label>{user.last_name}</label>
+												</div>
+												<div className="col-md-4">
+													<label>Email Address: </label>
+												</div>
+												<div className="col-md-6">
+													<label>{user.email}</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{/* </div> */}
+					</div>
+				</div>
 			</div>
 		</div>
 	);
