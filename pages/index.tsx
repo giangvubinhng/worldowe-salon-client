@@ -84,7 +84,6 @@ const Home: NextPage<props> = ({shops}) => {
 				</section>
 				<section>
 					<div>
-						<h2 className={styles.sectionName}>About us</h2>
 						<About/>
 					</div>
 				</section>
