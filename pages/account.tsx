@@ -27,7 +27,6 @@ const Account: FC = () => {
 		setFile(e.target.files[0])
 	}
 
-
 	return (
 		<div className={styles.bodyContainer}>
 			<div className="container emp-profile">
@@ -40,7 +39,7 @@ const Account: FC = () => {
 										<img src={`${URI}${user.profile_image}`} height="250" width="250" className="styles.avatar"></img>
 										<form onSubmit={handleUpload}>
 											<input type="file" name="profile_pic" onChange={onInputChange} />
-											<button type="submit" >Update profile picture</button>
+											<button type="submit">Update profile picture</button>
 										</form>
 										{uploadSuccess.success ? <p>{uploadSuccess.message}</p> : null}
 									</div>
@@ -48,7 +47,7 @@ const Account: FC = () => {
 							</div>
 							<div className="col-md-6">
 								<div className="profile-head">
-									<h5>About</h5>
+									<h5>Bio</h5>
 									<div className="profile-rating mt-3 mb-5">
 										<div className="row">
 											<div className="col-md-4">
