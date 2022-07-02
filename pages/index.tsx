@@ -74,15 +74,15 @@ const Home: NextPage<props> = ({shops}) => {
 
 					</div>
 				</section>
-				<section>
+				<section className={styles.section}>
 					<div className={styles.shopsContainer}>
-						<h2 className={styles.sectionName}>Recommended Salons Around You</h2>
-						<div className={styles.sectionTwo}>
+						<div className={styles.titleContainer}>
+							<h2 className={styles.sectionName}>Recommended Salons Around You</h2>
 						</div>
 						<RecommendedShops shops={shops}/>
 					</div>
 				</section>
-				<section>
+				<section className={styles.section}>
 					<div>
 						<About/>
 					</div>
