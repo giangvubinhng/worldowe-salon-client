@@ -33,7 +33,7 @@ const ForgotPassword: NextPage<props> = ({forgotClicked, hideClicked}) => {
 								<div id="icon-lost-msg" className="glyphicon glyphicon-chevron-right"></div>
 								<h3>Forgot Password?</h3>
 							</div>
-							<label>Lost your password? Please enter your email address. You will receive a link to create a new password via email.</label>
+							<label>Forgot/Lost your password? Please enter your email address. You will receive a link to create a new password via email.</label>
 						</div>
 						<div className="modal-footer">
 							<input type="email" name="forgotEmail" className="form-control" value={state.forgotEmail} onChange={onInputChange} placeholder="Enter Email" required></input>

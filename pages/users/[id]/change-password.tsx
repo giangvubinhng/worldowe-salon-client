@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {changePassword} from '@/services/user.service';
+import {AuthorizedRoute} from '@/components/HOC/AuthorizedRoute';
 import {IReturnObject} from '@/interfaces/IBasicReturnTypeObject';
+import {GetServerSideProps} from 'next';
 const PasswordChange = () => {
 
 	let InitialReturnObject: IReturnObject = {
@@ -77,6 +79,16 @@ const PasswordChange = () => {
 				{result.loaded ? (<p>{result.message}</p>) : null}
 			</div>
 		</div>
-    );
+	);
 }
 export default PasswordChange;
+
+export const getServerSideProps: GetServerSideProps = AuthorizedRoute(
+	async (ctx) => {
+		return {
+			props: {
+
+			},
+		}
+	}
+)
