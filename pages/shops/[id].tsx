@@ -1,13 +1,11 @@
-import {GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
 import {initializeApollo} from '@/Apollo/client'
 import styles from '@/styles/ShopDetail.module.css';
 import {GET_CURRENT_SHOP, GET_SHOPS} from "@/graphql/shopQueries";
 import {IShopBody} from '@/interfaces/IShop';
-import {useRouter} from 'next/router'
-import Spinner from 'react-bootstrap/Spinner'
-import {useEffect, useState} from 'react';
 import {useAppSelector} from '@/app/hooks'
-import { Button } from 'react-bootstrap';
+import { Offcanvas, Container, Row, Col, Button, Carousel } from 'react-bootstrap';
+import { useState } from 'react';
 
 interface props {
 	shop: IShopBody
@@ -16,16 +14,70 @@ interface props {
 
 const ShopPage: NextPage<props> = ({shop}) => {
 	const user = useAppSelector((state) => state.user.value);
-	const isAdmin = parseInt(user.user_id) === shop.user_id;
+	const admin = parseInt(user.user_id) === shop.user_id;
+	const [showCanvas, setShowCanvas] = useState(false);
+	const handleCloseCanvas = () => setShowCanvas(false);
+  	const handleShowCanvas = () => setShowCanvas(true);
+	// const [admin, setAdmin] = useState(false);
+	// useEffect(() => {
+	// 	if(parseInt(user.user_id) === shop.user_id){
+	// 		setAdmin(true)
+	// 	}
+	// }, [user])
 
 	if (!shop) return <div> empty </div>
 	return (<div className={styles.container}> 
-		<p>Welcome to {shop?.shop_name}</p>
-		{isAdmin ? (
-		<div>
-		<Button>Add services</Button>
-		<Button>Add Technicians</Button>
-		</div>) : null}
+		<Carousel>
+			<Carousel.Item>
+				<div className={styles.imageContainer}>
+					<div className={`${styles.imageGrid}`}>
+						<img className={`${styles.imageGridCol} ${styles.imageGridRow}`} src="https://img.freepik.com/premium-vector/beauty-salon-color-illustration-hair-stylist-workplace-room-make-up-artist-barbershop-table-cosmetology-parlor-cartoon-interior-with-mirrors-armchairs-background_151150-1303.jpg?w=2000" alt="architecture"/>
+						<img src="https://img.freepik.com/premium-vector/beauty-salon-color-illustration-hair-stylist-workplace-room-make-up-artist-barbershop-table-cosmetology-parlor-cartoon-interior-with-mirrors-armchairs-background_151150-1303.jpg?w=2000" alt="architecture"/>
+						<img src="https://img.freepik.com/premium-vector/beauty-salon-color-illustration-hair-stylist-workplace-room-make-up-artist-barbershop-table-cosmetology-parlor-cartoon-interior-with-mirrors-armchairs-background_151150-1303.jpg?w=2000" alt="architecture"/>
+						<img src="https://img.freepik.com/premium-vector/beauty-salon-color-illustration-hair-stylist-workplace-room-make-up-artist-barbershop-table-cosmetology-parlor-cartoon-interior-with-mirrors-armchairs-background_151150-1303.jpg?w=2000" alt="architecture"/>
+						<img src="https://img.freepik.com/premium-vector/beauty-salon-color-illustration-hair-stylist-workplace-room-make-up-artist-barbershop-table-cosmetology-parlor-cartoon-interior-with-mirrors-armchairs-background_151150-1303.jpg?w=2000" alt="architecture"/>
+					</div>
+				</div>
+					<Carousel.Caption>
+						<div className={styles.titleContainer}>
+							<h3 className={styles.title}>Welcome to {shop?.shop_name}</h3>
+						</div>
+					</Carousel.Caption>
+			</Carousel.Item>
+		</Carousel>
+		{admin ? 
+		( 
+			<div className={styles.floatingBtnContainer}>
+				<Button onClick={handleShowCanvas} variant="outline-dark" className={`${styles.manageBtn}`}>
+					Manage
+				</Button>
+			</div>) : null}
+		<Offcanvas show={showCanvas} onHide={handleCloseCanvas}>
+			<Offcanvas.Header closeButton>
+			<Offcanvas.Title>Offcanvas</Offcanvas.Title>
+			</Offcanvas.Header>
+			<Offcanvas.Body>
+			<div>
+				<Button>Add services</Button>
+				<Button>Add Technicians</Button>
+			</div>
+			</Offcanvas.Body>
+		</Offcanvas>
+		<Container fluid>
+			<Row>
+				<Col className={styles.column}>
+					<div className={styles.services}>
+						<h3>Services</h3>
+
+					</div>
+				</Col>
+				<Col className={styles.column}>
+					<div className={styles.people}> 
+						<h3>Our Team</h3>
+					</div>
+				</Col>
+			</Row>
+		</Container>
 	</div>)
 }
 

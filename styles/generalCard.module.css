@@ -1,3 +1,15 @@
 .container{
     margin-bottom: 20px;
 }
+
+.link{
+    color: inherit;
+    text-decoration: none;
+}
+.link:hover{
+    color: inherit;
+}
+.Card:hover{
+    background-color: #a4c3b2;
+    box-shadow: 0 0 20px rgba(33,33,33,.2); 
+}

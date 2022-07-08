@@ -6,26 +6,22 @@ interface props {
     info: string;
     image?: string;
     routeTo?: string;
-    buttonName?: string;
 }
 
 const GeneralCard: NextPage<props> = (props) => {
 
 	return (
 		<div className={styles.container}>
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '18rem' }} className={styles.Card}>
+                <a className={styles.link} target="_blank" href={`${props.routeTo}`} rel="noopener noreferrer">
                     <Card.Img variant="top" src="https://www.mountsinai.on.ca/wellbeing/images/image-placeholder/image" />
                     <Card.Body>
                         <Card.Title>{props.title}</Card.Title>
                         <Card.Text>
                             {props.info}
                         </Card.Text>
-                        {props.buttonName ? (
-                            <a target="_blank" href={`${props.routeTo}`} rel="noopener noreferrer">
-                                <Button variant="primary">{props.buttonName}</Button>
-                            </a>
-                        ) : null }
                     </Card.Body>
+                </a>
                 </Card>
 		</div>
 	);
