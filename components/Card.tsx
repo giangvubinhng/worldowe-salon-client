@@ -12,29 +12,23 @@ const Card: NextPage<props> = ({ shop }) => {
 
 	return (
 		<div>
-			<BCard className={styles.Bcard}>
-				<BCard.Body>
-					<div className={styles.flexboxContainer}>
-						
-						<div className={styles.leftBox}>
-							{/* <style jsx>{`
-        					.leftBox{
-          						display: list-items;
-        					}
-      						`}</style> */}
-							<BCard.Title>{shop.shop_name}</BCard.Title>
-							<BCard.Text>
-								{shop.street}, {shop.city}, {shop.state}, {shop.zip}, {shop.country}
-							</BCard.Text>
-							<a target="_blank" href={`/shops/${shop.id}`} rel="noopener noreferrer">
-								<Button className={styles.Button}>Go To Shop</Button></a>
+			<a target="_blank" href={`/shops/${shop.id}`} rel="noopener noreferrer" className={styles.link}>
+				<BCard className={styles.Bcard}>
+					<BCard.Body>
+						<div className={styles.flexboxContainer}>
+							<div className={styles.leftBox}>
+								<BCard.Title className={styles.title}>{shop.shop_name}</BCard.Title>
+								<BCard.Text className={styles.info}>
+									{shop.street}, {shop.city}, {shop.state}, {shop.zip}, {shop.country}
+								</BCard.Text>
+							</div>
+							<div className={styles.photo}>
+								<img src="https://img.freepik.com/premium-vector/beauty-salon-color-illustration-hair-stylist-workplace-room-make-up-artist-barbershop-table-cosmetology-parlor-cartoon-interior-with-mirrors-armchairs-background_151150-1303.jpg?w=2000" alt="Free unsplash image" className={styles.CardPhoto}></img>
+							</div>
 						</div>
-						<div className={styles.photo}>
-							<img src="https://source.unsplash.com/user/c_v_r" alt="Free unsplash image" className={styles.CardPhoto}></img>
-						</div>
-					</div>
-				</BCard.Body>
-			</BCard>
+					</BCard.Body>
+				</BCard>
+			</a>
 		</div>
 	);
 };
