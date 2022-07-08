@@ -90,7 +90,7 @@ const Login = () => {
 							<label className="custom-control-label" htmlFor="customCheck1">
 								Remember me
 							</label>
-						</div>
+						</div> 
 					</div>
 
 					<button type="submit" className="btn btn-dark btn-lg btn-block">
