@@ -58,14 +58,22 @@ const PasswordChange = () => {
 		<div className={styles.container}>
 			<div className={styles.inner}>
 				<form onSubmit={submit}>
-					<h2>Password Reset</h2>
-					<p>Set a new password</p>
-					<label>Old Password*</label>
-					<input type="password" name="oldPassword" placeholder="Enter Old Password" value={input.oldPassword} onChange={onInputChange} style={{ width: "500px" }}></input>
-					<label>New Password*</label>
-					<input type="password" name="password" placeholder="Enter New Password" value={input.password} onChange={onInputChange} style={{ width: "500px" }}></input>
-					<label>New Password Confirmation*</label>
-					<input type="password" name="confirmPassword" placeholder="Confirm New Password" value={input.confirmPassword} onChange={onInputChange} style={{ width: "500px" }}></input>
+					<div>
+						<h2>Password Reset</h2>
+						<p>Set a new password</p>
+					</div>
+					<div>
+						<label>Old Password*</label>
+						<input type="password" name="oldPassword" placeholder="Enter Old Password" value={input.oldPassword} onChange={onInputChange} style={{ width: "500px" }}></input>
+					</div>
+					<div>
+						<label>New Password*</label>
+						<input type="password" name="password" placeholder="Enter New Password" value={input.password} onChange={onInputChange} style={{ width: "500px" }}></input>
+					</div>
+					<div>
+						<label>New Password Confirmation*</label>
+						<input type="password" name="confirmPassword" placeholder="Confirm New Password" value={input.confirmPassword} onChange={onInputChange} style={{ width: "500px" }}></input>
+					</div>
 					<Button className='btn btn-dark'>Done</Button>
 				</form>
 				{error.hasError ? (<p>{error.message}</p>) : null}
