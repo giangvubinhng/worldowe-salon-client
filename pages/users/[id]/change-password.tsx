@@ -4,7 +4,6 @@ import { AuthorizedRoute } from '@/components/HOC/AuthorizedRoute';
 import { IReturnObject } from '@/interfaces/IBasicReturnTypeObject';
 import { GetServerSideProps } from 'next';
 import styles from '@/styles/Change-Password.module.css'
-import { Button } from 'react-bootstrap';
 
 const PasswordChange = () => {
 
@@ -74,7 +73,7 @@ const PasswordChange = () => {
 						<label>New Password Confirmation*</label>
 						<input type="password" name="confirmPassword" placeholder="Confirm New Password" value={input.confirmPassword} onChange={onInputChange} style={{ width: "500px" }}></input>
 					</div>
-					<Button className='btn btn-dark'>Done</Button>
+					<button className='btn btn-dark'>Done</button>
 				</form>
 				{error.hasError ? (<p>{error.message}</p>) : null}
 				{result.loaded ? (<p>{result.message}</p>) : null}
