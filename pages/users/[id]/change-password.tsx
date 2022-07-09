@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
-import {changePassword} from '@/services/user.service';
-import {AuthorizedRoute} from '@/components/HOC/AuthorizedRoute';
-import {IReturnObject} from '@/interfaces/IBasicReturnTypeObject';
-import {GetServerSideProps} from 'next';
+import React, { useState } from 'react';
+import { changePassword } from '@/services/user.service';
+import { AuthorizedRoute } from '@/components/HOC/AuthorizedRoute';
+import { IReturnObject } from '@/interfaces/IBasicReturnTypeObject';
+import { GetServerSideProps } from 'next';
+import styles from '@/styles/Change-Password.module.css'
+
 const PasswordChange = () => {
 
 	let InitialReturnObject: IReturnObject = {
@@ -25,7 +27,7 @@ const PasswordChange = () => {
 	const [result, setResult] = useState(InitialReturnObject)
 
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const {name, value} = e.target;
+		const { name, value } = e.target;
 		setInput(prev => ({
 			...prev,
 			[name]: value
@@ -52,33 +54,32 @@ const PasswordChange = () => {
 	};
 
 	return (
-		<div>
-			<div>
+		<div className={styles.container}>
+			<div className={styles.inner}>
 				<form onSubmit={submit}>
 					<div>
-						<label>Old Password</label>
-						<input type="password" name="oldPassword" placeholder="Enter Old Password" value={input.oldPassword} onChange={onInputChange}></input>
-
+						<h2>Password Reset</h2>
+						<p>Set a new password</p>
 					</div>
-
 					<div>
-						<label>New Password</label>
-						<input type="password" name="password" placeholder="Enter New Password" value={input.password} onChange={onInputChange}></input>
-
+						<label>Old Password*</label>
+						<input type="password" name="oldPassword" placeholder="Enter Old Password" value={input.oldPassword} onChange={onInputChange} style={{ width: "500px" }}></input>
 					</div>
-
 					<div>
-						<label>Confirm Password</label>
-						<input type="password" name="confirmPassword" value={input.confirmPassword} onChange={onInputChange}></input>
-
+						<label>New Password*</label>
+						<input type="password" name="password" placeholder="Enter New Password" value={input.password} onChange={onInputChange} style={{ width: "500px" }}></input>
 					</div>
-
-					<button>Change Password</button>
+					<div>
+						<label>New Password Confirmation*</label>
+						<input type="password" name="confirmPassword" placeholder="Confirm New Password" value={input.confirmPassword} onChange={onInputChange} style={{ width: "500px" }}></input>
+					</div>
+					<button className='btn btn-dark'>Done</button>
 				</form>
 				{error.hasError ? (<p>{error.message}</p>) : null}
 				{result.loaded ? (<p>{result.message}</p>) : null}
 			</div>
 		</div>
+
 	);
 }
 export default PasswordChange;
