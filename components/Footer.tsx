@@ -11,7 +11,7 @@ const Footer = () => {
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					Worldowe{' '}
+					WorldoweBao{' '}
 					<span className={styles.logo}>
 						<Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
 					</span>
