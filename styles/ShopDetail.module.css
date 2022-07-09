@@ -17,6 +17,17 @@
   /* -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; */
 }
+.offCanvas{
+	background-color: #dee2e7;
+}
+.menuContainer{
+	display: flex;
+	flex-direction: column;
+}
+.menuBtn{
+	margin-bottom: 16px;
+}
+
 .title{
   text-decoration: none;
 	font-family: 'Montserrat', sans-serif;
