@@ -13,6 +13,9 @@ interface props {
 //doc : https://github.com/vercel/next.js/blob/canary/examples/with-apollo/lib/apolloClient.js
 
 const ImageURL = "https://img.freepik.com/premium-vector/beauty-salon-color-illustration-hair-stylist-workplace-room-make-up-artist-barbershop-table-cosmetology-parlor-cartoon-interior-with-mirrors-armchairs-background_151150-1303.jpg?w=2000"
+const ImageURL1 = "https://media.istockphoto.com/photos/modern-living-salon-interior-3d-render-image-picture-id959923330?b=1&k=20&m=959923330&s=170667a&w=0&h=Bhr6j839cb1fbORT4vMymESX6B7PqHbJtR7RRl8OI94="
+const ImageURL2 = "https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJlYXV0eSUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+const ImageURL3 = "https://images.pexels.com/photos/853427/pexels-photo-853427.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
 const ShopPage: NextPage<props> = ({shop}) => {
 	const user = useAppSelector((state) => state.user.value);
 	const admin = parseInt(user.user_id) === shop.user_id;
@@ -32,10 +35,10 @@ const ShopPage: NextPage<props> = ({shop}) => {
 			<Carousel.Item>
 				<div className={styles.imageContainer}>
 					<div className={`${styles.imageGrid}`}>
-						<img className={`${styles.imageGridCol} ${styles.imageGridRow}`} src={ImageURL} alt="architecture" />
+						<img className={`${styles.imageGridCol} ${styles.imageGridRow}`} src={ImageURL1} alt="architecture" />
 						<img src={ImageURL} alt="architecture" />
-						<img src={ImageURL} alt="architecture" />
-						<img src={ImageURL} alt="architecture" />
+						<img src={ImageURL2} alt="architecture" />
+						<img src={ImageURL3} alt="architecture" />
 						<img src={ImageURL} alt="architecture" />
 					</div>
 				</div>
@@ -62,7 +65,7 @@ const ShopPage: NextPage<props> = ({shop}) => {
 					<Button variant="outline-dark" size="sm" className={styles.menuBtn}>Manage Team</Button>
 					<Button variant="outline-dark" size="sm" className={styles.menuBtn}>Manage Services</Button>
 					<Button variant="outline-dark" size="sm" className={styles.menuBtn}>Manage Bookings</Button>
-					<Button variant="outline-dark" size="sm" className={styles.menuBtn}>Shop Settings</Button>
+					<Button variant="outline-dark" size="sm" className={styles.menuBtn}>Manage Photos</Button>
 				</div>
 			</Offcanvas.Body>
 		</Offcanvas>
