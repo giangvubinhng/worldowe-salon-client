@@ -39,7 +39,7 @@ export const login = async (data: any) => {
 		return err.response.data
 	}
 };
-export const forgetPassword = async (email: string) => {
+export const sendEmailForgetPassword = async (email: string) => {
 	try {
 		const result = await axios.post(`${URI}/send-reset-password-email`, {email})
 		if (result.status === 200 && result.data.success) {

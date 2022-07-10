@@ -1,5 +1,5 @@
 import {NextPage} from "next";
-import {forgetPassword} from '@/services/user.service';
+import {sendEmailForgetPassword} from '@/services/user.service';
 import {Modal} from 'react-bootstrap'
 import {useState} from 'react';
 
@@ -7,11 +7,16 @@ interface props {
 	forgotClicked: boolean
 	hideClicked: any
 }
+type ResultReponse = {
+	success:   boolean;
+	message: string;
+}
 
 const ForgotPassword: NextPage<props> = ({forgotClicked, hideClicked}) => {
 	const [state, setState] = useState({
 		forgotEmail: ''
 	});
+	const [result, setResult] = useState({success: false, message: ''})
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const {name, value} = e.target;
 		setState({
@@ -21,7 +26,18 @@ const ForgotPassword: NextPage<props> = ({forgotClicked, hideClicked}) => {
 	};
 	const sendForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const result = forgetPassword(state.forgotEmail)
+		try{
+
+			const currResult = await sendEmailForgetPassword(state.forgotEmail) as ResultReponse;
+			if(currResult){
+				setResult(currResult);
+			}
+		}
+		catch(e: unknown){
+			setResult({success: false, message: "An error has occurred"});
+		}
+
+
 	}
 	return (
 		<>
@@ -37,6 +53,7 @@ const ForgotPassword: NextPage<props> = ({forgotClicked, hideClicked}) => {
 						</div>
 						<div className="modal-footer">
 							<input type="email" name="forgotEmail" className="form-control" value={state.forgotEmail} onChange={onInputChange} placeholder="Enter Email" required></input>
+							{result.success ? (<p>{result.message}</p>) : null}
 							<div>
 								<button type="submit" className="btn btn-dark btn-lg btn-block">Send</button>
 							</div>

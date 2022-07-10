@@ -13,6 +13,14 @@
     background-color: #a4c3b2;
     box-shadow: 0 0 20px rgba(33,33,33,.2); 
 }
+.link{
+    color: inherit;
+    text-decoration: none;
+}
+.link:hover{
+    color: inherit;
+}
+
 
 .Button {
     background-color: #84a59d !important;
@@ -24,7 +32,6 @@
     background-color: #dedbd2;
 }
 .CardPhoto{
-    width: 100%;
-    max-width: 200px;
-    height: auto;
+    width: 200px;
+    height: 150px;
 }
