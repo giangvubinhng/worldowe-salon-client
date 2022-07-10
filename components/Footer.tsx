@@ -4,7 +4,7 @@ import styles from '@/styles/Footer.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer = () => (
-	<div>
+	<div className={styles.container}>
 		<footer className={styles.footer}>
 			<div className="container">
 				<div className="row">
