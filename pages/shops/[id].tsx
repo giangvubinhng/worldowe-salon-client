@@ -6,6 +6,7 @@ import {IShopBody} from '@/interfaces/IShop';
 import {useAppSelector} from '@/app/hooks'
 import {Offcanvas, Container, Row, Col, Button, Carousel} from 'react-bootstrap';
 import {useState} from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface props {
 	shop: IShopBody
@@ -62,10 +63,10 @@ const ShopPage: NextPage<props> = ({shop}) => {
 			</Offcanvas.Header>
 			<Offcanvas.Body>
 				<div className={styles.menuContainer}>
-					<Button variant="outline-dark" size="sm" className={styles.menuBtn}>Manage Team</Button>
-					<Button variant="outline-dark" size="sm" className={styles.menuBtn}>Manage Services</Button>
-					<Button variant="outline-dark" size="sm" className={styles.menuBtn}>Manage Bookings</Button>
-					<Button variant="outline-dark" size="sm" className={styles.menuBtn}>Manage Photos</Button>
+					<Button variant="outline-dark" size="sm" className={styles.menuBtn}><FontAwesomeIcon icon="user" /> Manage Team</Button>
+					<Button variant="outline-dark" size="sm" className={styles.menuBtn}><FontAwesomeIcon icon="clipboard" /> Manage Services</Button>
+					<Button variant="outline-dark" size="sm" className={styles.menuBtn}><FontAwesomeIcon icon="receipt" /> Manage Bookings</Button>
+					<Button variant="outline-dark" size="sm" className={styles.menuBtn}><FontAwesomeIcon icon="image" /> Manage Photos</Button>
 				</div>
 			</Offcanvas.Body>
 		</Offcanvas>

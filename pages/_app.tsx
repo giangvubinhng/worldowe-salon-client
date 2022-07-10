@@ -8,6 +8,13 @@ import {wrapper} from '@/app/store';
 import { useAppDispatch } from '@/app/hooks';
 import {fetchCurrentUserAsync} from "@/features/userSlice";
 import {useApollo} from '@/Apollo/client';
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCheckSquare, faCoffee, faUser, faClipboard, faReceipt, faImage } from '@fortawesome/free-solid-svg-icons'
+// adding icons
+library.add(faCheckSquare, faCoffee, faUser, faClipboard, faReceipt, faImage)
 
 const MyApp: FC<AppProps> = ({Component, pageProps}) => {
 	const client = useApollo(pageProps);
