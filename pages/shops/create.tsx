@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { CREATE_SHOP } from "@/graphql/shopQueries";
 import { useMutation } from "@apollo/client";
 import { Country, State, City }  from 'country-state-city';
+import { ProtectedRoute } from "@/components/HOC/ProtectedRoute";
+import { GetServerSideProps } from "next";
 const CreateShop = () => {
   const [createShop] = useMutation(CREATE_SHOP);
   const initialShopState = {
@@ -130,3 +132,13 @@ const CreateShop = () => {
 };
 
 export default CreateShop;
+
+export const getServerSideProps: GetServerSideProps = ProtectedRoute(
+	async (ctx) => {
+		return {
+			props: {
+
+			},
+		}
+	}
+)
