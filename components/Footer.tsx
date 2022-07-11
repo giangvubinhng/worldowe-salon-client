@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from '@/styles/Footer.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Footer = () => (
 	<div className={styles.container}>
