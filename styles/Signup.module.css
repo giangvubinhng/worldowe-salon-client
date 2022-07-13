@@ -15,6 +15,9 @@
 	border-radius: 15px;
 	transition: all 0.3s;
 }
+.submitBtn{
+	margin-top: 5px;
+}
 
 .errorMessage{
 	color: red;

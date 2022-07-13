@@ -28,7 +28,7 @@ const RecommendedShops: NextPage<props> = ({shops, loading, error}) => {
 
 						{shops.map((shop: IShopBody, index: number ) => (
 						<Col key={index}>
-						<GeneralCard title={shop.shop_name} info={shop.street}  key={shop.id}/></Col>
+						<GeneralCard title={shop.shop_name} info={shop.street}  key={shop.id} routeTo={`/shops/${shop.id}`}/></Col>
 				))}</Row></Container></div>)
 				: null}
 			{shops && shops.length === 0 ? (<p>No shop found</p>) : null}

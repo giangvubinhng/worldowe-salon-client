@@ -68,11 +68,6 @@ const ShopPage: NextPage<props> = ({shop}) => {
 									<img src={ImageURL} alt="architecture" />
 								</div>
 							</div>
-							<Carousel.Caption>
-								<div className={styles.titleContainer}>
-									<h3 className={styles.title}>Welcome to {shop?.shop_name}</h3>
-								</div>
-							</Carousel.Caption>
 						</Carousel.Item>
 					</Carousel>
 				</Col>
