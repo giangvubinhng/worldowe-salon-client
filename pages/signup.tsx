@@ -82,7 +82,7 @@ const Signup = () => {
 						/>
 					</div>
 
-					<button type="submit" className="btn btn-dark btn-lg btn-block">
+					<button type="submit" className={`${styles.submitBtn} btn btn-dark btn-lg btn-block`}>
 						Register
 					</button>
 					<p className="forgot-password text-right">
