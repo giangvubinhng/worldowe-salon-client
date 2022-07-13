@@ -90,7 +90,7 @@ const ShopPage: NextPage<props> = ({shop}) => {
 export default ShopPage
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const prefetch = true;
+	const prefetch = false;
 	const client = initializeApollo(null, prefetch);
 	const {data} = await client.query({query: GET_SHOPS, variables: {name: ""}})
 	const paths = data.shops.map((e: IShopBody) => ({
@@ -105,7 +105,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	const {params} = ctx;
-	const prefetch = true;
+	const prefetch = false;
 	const client = initializeApollo(null, prefetch);
 	const {data} = await client.query({query: GET_CURRENT_SHOP, variables: {id: params?.id ? parseInt(params.id as string) : -1}})
 	return {
