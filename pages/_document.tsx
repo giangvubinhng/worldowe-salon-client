@@ -15,6 +15,7 @@ export default class NextDocument extends Document {
 						href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Work+Sans:wght@100&display=swap"
 						rel="stylesheet"
 					/>
+					<script src="https://kit.fontawesome.com/2fe5fded4d.js" crossOrigin="anonymous"></script>
 				</Head>
 				<body>
 					<Main />

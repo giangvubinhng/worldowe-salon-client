@@ -8,6 +8,10 @@ import {wrapper} from '@/app/store';
 import { useAppDispatch } from '@/app/hooks';
 import {fetchCurrentUserAsync} from "@/features/userSlice";
 import {useApollo} from '@/Apollo/client';
+import FontAwesomeCollection from '@/components/utils/FontAwesomeCollection';
+
+// run fontawesome
+FontAwesomeCollection();
 
 const MyApp: FC<AppProps> = ({Component, pageProps}) => {
 	const client = useApollo(pageProps);

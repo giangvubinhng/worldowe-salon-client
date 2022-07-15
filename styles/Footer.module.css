@@ -2,7 +2,8 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	bottom: 0;
+	padding: 16px;
+	border-top: 1px solid rgb(194, 194, 194);
 }
 
 .footer ul {
