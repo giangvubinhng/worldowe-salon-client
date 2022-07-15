@@ -73,7 +73,7 @@ const PasswordChange = () => {
 						<label>New Password Confirmation*</label>
 						<input type="password" name="confirmPassword" placeholder="Confirm New Password" value={input.confirmPassword} onChange={onInputChange} style={{ width: "500px" }}></input>
 					</div>
-					<button className='btn btn-dark'>Done</button>
+					<button className={`btn btn-dark ${styles.doneBtn}`}>Done</button>
 				</form>
 				{error.hasError ? (<p>{error.message}</p>) : null}
 				{result.loaded ? (<p>{result.message}</p>) : null}
