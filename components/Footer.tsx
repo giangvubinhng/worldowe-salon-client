@@ -29,9 +29,6 @@ const Footer = () => (
 									<a href="https://www.creative-tim.com/presentation">About Us</a>
 								</li>
 								<li className="nav-item">
-									<a href="https://creative-tim.com/blog">Blog</a>
-								</li>
-								<li className="nav-item">
 									<a href="https://opensource.org/licenses/MIT">License</a>
 								</li>
 							</ul>
