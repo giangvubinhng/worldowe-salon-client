@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from '@/styles/Footer.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 const Footer = () => (
 	<div className={styles.container}>
@@ -12,9 +12,9 @@ const Footer = () => (
 						<div className="column">
 							<h4 className="mt-3">Discover</h4>
 							<ul>
-								<li><a href="javascript:;"><span>Hair Salon</span></a></li>
-								<li><a href="javascript:;"><span>Nail Salon</span></a></li>
-								<li><a href="javascript:;"><span>Spa</span></a></li>
+								<li><a href="/"><span>Hair Salon</span></a></li>
+								<li><a href="/"><span>Nail Salon</span></a></li>
+								<li><a href="/"><span>Spa</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -42,9 +42,9 @@ const Footer = () => (
 							<h4 className="mt-3">Social</h4>
 							<div className="btn-wrapper profile text-left">
 								<ul>
-									<a href="https://twitter.com" id="tooltip799285778" className="btn btn-twitter btn-sm"><i className="fab fa-instagram-square"></i></a>
-									<a href="https://www.facebook.com" id="tooltip33856223" className="btn btn-facebook btn-sm"><i className="fab fa-facebook"></i></a>
-									<a href="https://dribbble.com" id="tooltip521847749" className="btn btn-slack btn-sm"><i className="fa fa-envelope"></i></a>
+									<a href="https://twitter.com" id="tooltip799285778" className="btn btn-twitter btn-sm"><i aria-hidden className="fab fa-instagram-square"></i></a>
+									<a href="https://www.facebook.com" id="tooltip33856223" className="btn btn-facebook btn-sm"><i aria-hidden className="fab fa-facebook"></i></a>
+									<a href="https://dribbble.com" id="tooltip521847749" className="btn btn-slack btn-sm"><i aria-hidden className="fa fa-envelope"></i></a>
 								</ul>
 							</div>
 						</div>
