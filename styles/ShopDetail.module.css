@@ -8,22 +8,22 @@
 	justify-content: center;
 	align-items: center;
 }
-.titleContainer{
-	/* background: linear-gradient(
-    to right, 
-    hsl(98 100% 62%), 
-    hsl(204 100% 59%)
-  ); */
-  /* -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
+
+.sectionTitle{
+	display: flex;
+	margin-right: 0;
+	margin-left: auto;
 }
+
 .offCanvas{
 	background-color: #dee2e7;
 }
+
 .menuContainer{
 	display: flex;
 	flex-direction: column;
 }
+
 .menuBtn{
 	margin-bottom: 16px;
 }
@@ -50,8 +50,6 @@
   gap: var(--gap);
 }
 
-.column{
-}
 .floatingBtnContainer{
 
   position:fixed;

@@ -15,6 +15,10 @@
 	border-radius: 15px;
 	transition: all 0.3s;
 }
+.title{
+	font-family: 'Yellowtail', cursive;
+}
+
 .errorMessage{
 	color: red;
 }

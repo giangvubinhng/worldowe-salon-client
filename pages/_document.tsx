@@ -1,4 +1,4 @@
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import Document, {Head, Html, Main, NextScript} from 'next/document';
 
 // Prevent FOUC on Firefox due to an age-old script processing bug.
 // @see {@link https://nextjs.org/docs/advanced-features/custom-document}
@@ -15,6 +15,7 @@ export default class NextDocument extends Document {
 						href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&family=Work+Sans:wght@100&display=swap"
 						rel="stylesheet"
 					/>
+					<link href="https://fonts.googleapis.com/css2?family=Yellowtail&display=swap" rel="stylesheet" />
 					<script src="https://kit.fontawesome.com/2fe5fded4d.js" crossOrigin="anonymous"></script>
 				</Head>
 				<body>

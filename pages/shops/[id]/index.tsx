@@ -6,7 +6,7 @@ import {IShopBody} from '@/interfaces/IShop';
 import {useAppSelector} from '@/app/hooks'
 import {Offcanvas, Container, Row, Col, Button, Carousel, ListGroup, Badge} from 'react-bootstrap';
 import {useState} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import Card from '@/components/Card'
 
 interface props {
@@ -76,12 +76,15 @@ const ShopPage: NextPage<props> = ({shop}) => {
 				<Col></Col>
 				<Col className={styles.column}>
 					<div className={styles.services}>
-						<h3>Services</h3>
+						<div className={styles.sectionTitle}>
+							<h3>Services</h3>
+							<button className={`btn btn-dark`}>Create Booking</button>
+						</div>
 						<ListGroup as="ol" numbered>
 							<ListGroup.Item
-							as="li"
-							action
-							className="d-flex justify-content-between align-items-start"
+								as="li"
+								action
+								className="d-flex justify-content-between align-items-start"
 							>
 								<div className="ms-2 me-auto">
 									<div className="fw-bold">Gel</div>
@@ -92,22 +95,22 @@ const ShopPage: NextPage<props> = ({shop}) => {
 								</Badge>
 							</ListGroup.Item>
 							<ListGroup.Item
-							as="li" 
-							action
-							className="d-flex justify-content-between align-items-start"
+								as="li"
+								action
+								className="d-flex justify-content-between align-items-start"
 							>
 								<div className="ms-2 me-auto">
 									<div className="fw-bold">Pedicure</div>
 									Feet
-									</div>
-									<Badge bg="primary" pill>
-										$20
-									</Badge>
+								</div>
+								<Badge bg="primary" pill>
+									$20
+								</Badge>
 							</ListGroup.Item>
 							<ListGroup.Item
-							as="li"
- 							action
-							className="d-flex justify-content-between align-items-start"
+								as="li"
+								action
+								className="d-flex justify-content-between align-items-start"
 							>
 								<div className="ms-2 me-auto">
 									<div className="fw-bold">Medicure</div>
@@ -116,8 +119,8 @@ const ShopPage: NextPage<props> = ({shop}) => {
 								<Badge bg="primary" pill>
 									$14
 								</Badge>
-						</ListGroup.Item>
-					</ListGroup>
+							</ListGroup.Item>
+						</ListGroup>
 
 					</div>
 				</Col>

@@ -51,7 +51,7 @@ const Login = () => {
 		<div className={styles.container}>
 			<div className={styles.inner}>
 				<form onSubmit={onSubmit}>
-					<h3>Log in</h3>
+					<h3 className={styles.title}>Sign in</h3>
 					{error !== '' || error !== undefined ? (<p className={styles.errorMessage}>{error}</p>) : null}
 					<div className="form-group">
 						<label>Email</label>
@@ -90,10 +90,10 @@ const Login = () => {
 							<label className="custom-control-label" htmlFor="customCheck1">
 								Remember me
 							</label>
-						</div> 
+						</div>
 					</div>
 
-					<button type="submit" className="btn btn-dark btn-lg btn-block">
+					<button type="submit" className={`${styles.submitBtn} btn btn-dark btn-lg btn-block`}>
 						Sign in
 					</button>
 				</form>
