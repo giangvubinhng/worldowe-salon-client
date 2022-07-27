@@ -16,15 +16,15 @@ const Signup = () => {
 			...state,
 			[name]: value,
 		});
-	};
+	}
 	const submit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		try{
+		try {
 			const result = await register(state);
-			if(!result.success){
-				setError(result.message)	
+			if (!result.success) {
+				setError(result.message)
 			}
-		}catch(e){
+		} catch (e) {
 			return e
 		}
 	};
@@ -35,31 +35,31 @@ const Signup = () => {
 					<h3>Register</h3>
 					{error !== '' || error !== undefined ? (<p className={styles.errorMessage}>{error}</p>) : null}
 					<div className="form-group">
-						<label>First name</label>
+						<label>First name*</label>
 						<input
 							type="text"
 							value={state.first_name}
 							name="first_name"
 							onChange={onInputChange}
 							className="form-control"
-							placeholder="First name"
+							placeholder="Enter first name"
+							required
 						/>
 					</div>
-
 					<div className="form-group">
-						<label>Last name</label>
+						<label>Last name*</label>
 						<input
 							type="text"
 							value={state.last_name}
 							name="last_name"
 							onChange={onInputChange}
 							className="form-control"
-							placeholder="Last name"
+							placeholder="Enter last name"
+							required
 						/>
 					</div>
-
 					<div className="form-group">
-						<label>Email</label>
+						<label>Email*</label>
 						<input
 							type="email"
 							value={state.email}
@@ -67,11 +67,11 @@ const Signup = () => {
 							onChange={onInputChange}
 							className="form-control"
 							placeholder="Enter email"
+							required
 						/>
 					</div>
-
 					<div className="form-group">
-						<label>Password</label>
+						<label>Password*</label>
 						<input
 							type="password"
 							value={state.password}
@@ -79,9 +79,9 @@ const Signup = () => {
 							onChange={onInputChange}
 							className="form-control"
 							placeholder="Enter password"
+							required
 						/>
 					</div>
-
 					<button type="submit" className={`${styles.submitBtn} btn btn-dark btn-lg btn-block`}>
 						Register
 					</button>
