@@ -6,7 +6,7 @@ import {IShopBody} from '@/interfaces/IShop';
 import {useAppSelector} from '@/app/hooks'
 import {Offcanvas, Container, Row, Col, Button, Carousel, ListGroup, Badge} from 'react-bootstrap';
 import {useState} from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import Card from '@/components/Card'
 
 interface props {
@@ -79,9 +79,9 @@ const ShopPage: NextPage<props> = ({shop}) => {
 						<h3>Services</h3>
 						<ListGroup as="ol" numbered>
 							<ListGroup.Item
-							as="li"
-							action
-							className="d-flex justify-content-between align-items-start"
+								as="li"
+								action
+								className="d-flex justify-content-between align-items-start"
 							>
 								<div className="ms-2 me-auto">
 									<div className="fw-bold">Gel</div>
@@ -92,22 +92,22 @@ const ShopPage: NextPage<props> = ({shop}) => {
 								</Badge>
 							</ListGroup.Item>
 							<ListGroup.Item
-							as="li" 
-							action
-							className="d-flex justify-content-between align-items-start"
+								as="li"
+								action
+								className="d-flex justify-content-between align-items-start"
 							>
 								<div className="ms-2 me-auto">
 									<div className="fw-bold">Pedicure</div>
 									Feet
-									</div>
-									<Badge bg="primary" pill>
-										$20
-									</Badge>
+								</div>
+								<Badge bg="primary" pill>
+									$20
+								</Badge>
 							</ListGroup.Item>
 							<ListGroup.Item
-							as="li"
- 							action
-							className="d-flex justify-content-between align-items-start"
+								as="li"
+								action
+								className="d-flex justify-content-between align-items-start"
 							>
 								<div className="ms-2 me-auto">
 									<div className="fw-bold">Medicure</div>
@@ -116,8 +116,8 @@ const ShopPage: NextPage<props> = ({shop}) => {
 								<Badge bg="primary" pill>
 									$14
 								</Badge>
-						</ListGroup.Item>
-					</ListGroup>
+							</ListGroup.Item>
+						</ListGroup>
 
 					</div>
 				</Col>
@@ -140,7 +140,7 @@ const ShopPage: NextPage<props> = ({shop}) => {
 export default ShopPage
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const prefetch = true;
+	const prefetch = false;
 	const client = initializeApollo(null, prefetch);
 	const {data} = await client.query({query: GET_SHOPS, variables: {name: ""}})
 	const paths = data.shops.map((e: IShopBody) => ({
@@ -155,7 +155,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	const {params} = ctx;
-	const prefetch = true;
+	const prefetch = false;
 	const client = initializeApollo(null, prefetch);
 	const {data} = await client.query({query: GET_CURRENT_SHOP, variables: {id: params?.id ? parseInt(params.id as string) : -1}})
 	return {
