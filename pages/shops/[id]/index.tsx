@@ -8,6 +8,7 @@ import {Offcanvas, Container, Row, Col, Button, Carousel, ListGroup, Badge} from
 import {useState} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import Card from '@/components/Card'
+import Link from 'next/link'
 
 interface props {
 	shop: IShopBody
@@ -78,7 +79,7 @@ const ShopPage: NextPage<props> = ({shop}) => {
 					<div className={styles.services}>
 						<div className={styles.sectionTitle}>
 							<h3>Services</h3>
-							<button className={`btn btn-dark`}>Create Booking</button>
+							<button className={`btn btn-dark`}><Link href='(shops)/create' passHref>Book an appoiment</Link></button>
 						</div>
 						<ListGroup as="ol" numbered>
 							<ListGroup.Item
