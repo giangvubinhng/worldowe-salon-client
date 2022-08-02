@@ -1,14 +1,14 @@
-import {GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage} from 'next';
-import {initializeApollo} from '@/Apollo/client'
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 'next';
+import { initializeApollo } from '@/Apollo/client'
 import styles from '@/styles/ShopDetail.module.css';
-import {GET_CURRENT_SHOP, GET_SHOPS} from "@/graphql/shopQueries";
-import {IShopBody} from '@/interfaces/IShop';
-import {useAppSelector} from '@/app/hooks'
-import {Offcanvas, Container, Row, Col, Button, Carousel, ListGroup, Badge} from 'react-bootstrap';
-import {useState} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { GET_CURRENT_SHOP, GET_SHOPS } from "@/graphql/shopQueries";
+import { IShopBody } from '@/interfaces/IShop';
+import { useAppSelector } from '@/app/hooks'
+import { Offcanvas, Container, Row, Col, Button, Carousel, ListGroup, Badge } from 'react-bootstrap';
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Card from '@/components/Card'
-import Link from 'next/link'
+import CreateBooking from '@/components/CreateBooking';
 
 interface props {
 	shop: IShopBody
@@ -20,7 +20,7 @@ const ImageURL1 = "https://media.istockphoto.com/photos/modern-living-salon-inte
 const ImageURL2 = "https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJlYXV0eSUyMHNhbG9ufGVufDB8fDB8fA%3D%3D&w=1000&q=80"
 const ImageURL3 = "https://images.pexels.com/photos/853427/pexels-photo-853427.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
 const PROFILE_PIC = "https://scontent-iad3-1.xx.fbcdn.net/v/t1.6435-9/138221343_1762256757282908_5813164246551012056_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=174925&_nc_ohc=prak6m8l4q0AX_136SH&_nc_oc=AQkhsEunBbzsrLepY8ZkF9sfao9kXQHnHWY5h2oP9lrYw653BSIwvT23wpwSQuLi_FU&tn=ZuITXcjMUJcVJ6d5&_nc_ht=scontent-iad3-1.xx&oh=00_AT-8SOyaxN0GIysPy0ALnJ8Ua2TsUw74DQ0mAvNlmJ1jdw&oe=62EFED84"
-const ShopPage: NextPage<props> = ({shop}) => {
+const ShopPage: NextPage<props> = ({ shop }) => {
 	const user = useAppSelector((state) => state.user.value);
 	const admin = parseInt(user.user_id) === shop.user_id;
 	const [showCanvas, setShowCanvas] = useState(false);
@@ -32,6 +32,8 @@ const ShopPage: NextPage<props> = ({shop}) => {
 	// 		setAdmin(true)
 	// 	}
 	// }, [user])
+
+	const [bookClicked, setBookClicked] = useState(false);
 
 	if (!shop) return <div> empty </div>
 	return (<div className={styles.container}>
@@ -57,7 +59,7 @@ const ShopPage: NextPage<props> = ({shop}) => {
 		</Offcanvas>
 		<Container fluid>
 			<Row>
-				<Col md={{span: 6, offset: 3}}>
+				<Col md={{ span: 6, offset: 3 }}>
 					<Carousel>
 						<Carousel.Item>
 							<div className={styles.imageContainer}>
@@ -79,7 +81,8 @@ const ShopPage: NextPage<props> = ({shop}) => {
 					<div className={styles.services}>
 						<div className={styles.sectionTitle}>
 							<h3>Services</h3>
-							<button className={`btn btn-dark`}><Link href={`/shops/${shop.id}/bookings/create`} passHref>Book an appoiment</Link></button>
+							<button className={`btn btn-dark`} onClick={() => setBookClicked(true)}>Book an appoiment</button>
+							<CreateBooking bookClicked={bookClicked} hideClicked={() => setBookClicked(false)} />
 						</div>
 						<ListGroup as="ol" numbered>
 							<ListGroup.Item
@@ -146,9 +149,9 @@ export default ShopPage
 export const getStaticPaths: GetStaticPaths = async () => {
 	const prefetch = false;
 	const client = initializeApollo(null, prefetch);
-	const {data} = await client.query({query: GET_SHOPS, variables: {name: ""}})
+	const { data } = await client.query({ query: GET_SHOPS, variables: { name: "" } })
 	const paths = data.shops.map((e: IShopBody) => ({
-		params: {id: e.id.toString()},
+		params: { id: e.id.toString() },
 	}))
 	return {
 		paths,
@@ -158,10 +161,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
-	const {params} = ctx;
+	const { params } = ctx;
 	const prefetch = false;
 	const client = initializeApollo(null, prefetch);
-	const {data} = await client.query({query: GET_CURRENT_SHOP, variables: {id: params?.id ? parseInt(params.id as string) : -1}})
+	const { data } = await client.query({ query: GET_CURRENT_SHOP, variables: { id: params?.id ? parseInt(params.id as string) : -1 } })
 	return {
 		props: {
 			shop: data.shop,
