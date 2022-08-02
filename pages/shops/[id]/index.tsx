@@ -79,7 +79,7 @@ const ShopPage: NextPage<props> = ({shop}) => {
 					<div className={styles.services}>
 						<div className={styles.sectionTitle}>
 							<h3>Services</h3>
-							<button className={`btn btn-dark`}><Link href='(shops)/create' passHref>Book an appoiment</Link></button>
+							<button className={`btn btn-dark`}><Link href={`/shops/${shop.id}/bookings/create`} passHref>Book an appoiment</Link></button>
 						</div>
 						<ListGroup as="ol" numbered>
 							<ListGroup.Item
