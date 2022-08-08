@@ -1,24 +1,24 @@
-import {NextPage} from "next";
-import {sendEmailForgetPassword} from '@/services/user.service';
-import {Modal} from 'react-bootstrap'
-import {useState} from 'react';
+import { NextPage } from "next";
+import { sendEmailForgetPassword } from '@/services/user.service';
+import { Modal } from 'react-bootstrap'
+import { useState } from 'react';
 
 interface props {
 	forgotClicked: boolean
 	hideClicked: any
 }
 type ResultReponse = {
-	success:   boolean;
+	success: boolean;
 	message: string;
 }
 
-const ForgotPassword: NextPage<props> = ({forgotClicked, hideClicked}) => {
+const ForgotPassword: NextPage<props> = ({ forgotClicked, hideClicked }) => {
 	const [state, setState] = useState({
 		forgotEmail: ''
 	});
-	const [result, setResult] = useState({success: false, message: ''})
+	const [result, setResult] = useState({ success: false, message: '' })
 	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const {name, value} = e.target;
+		const { name, value } = e.target;
 		setState({
 			...state,
 			[name]: value,
@@ -26,15 +26,15 @@ const ForgotPassword: NextPage<props> = ({forgotClicked, hideClicked}) => {
 	};
 	const sendForgotPassword = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		try{
+		try {
 
 			const currResult = await sendEmailForgetPassword(state.forgotEmail) as ResultReponse;
-			if(currResult){
+			if (currResult) {
 				setResult(currResult);
 			}
 		}
-		catch(e: unknown){
-			setResult({success: false, message: "An error has occurred"});
+		catch (e: unknown) {
+			setResult({ success: false, message: "An error has occurred" });
 		}
 
 

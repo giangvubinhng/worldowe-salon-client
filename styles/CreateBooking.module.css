@@ -1,0 +1,10 @@
+.column {
+    display: grid;
+    grid-template-columns: 10% 40% 10% 40%;
+}
+
+.input {
+    width: 350px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

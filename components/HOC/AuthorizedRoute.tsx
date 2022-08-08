@@ -4,7 +4,7 @@ import { IUserBody } from '@/interfaces/IUser';
 import cookie from 'cookie';
 import axios from 'axios';
 
-const URI = `http://172.28.0.1:5000`
+const URI = `http://localhost:5000`
 // This protects from users who aren't the author
 export function AuthorizedRoute(gssp: GetServerSideProps) {
   return async (ctx: GetServerSidePropsContext) => {
