@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { sendEmailForgetPassword } from '@/services/user.service';
+import { createBooking, sendEmailForgetPassword } from '@/services/user.service';
 import { Modal } from 'react-bootstrap'
 import { useState } from 'react';
 import styles from '../styles/CreateBooking.module.css'
@@ -25,43 +25,57 @@ const CreateBooking: NextPage<props> = ({ bookClicked, hideClicked }) => {
 		staff: '',
 		message: ''
 	});
-	const [result, setResult] = useState({ success: false, message: '' })
-	const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { name, value } = e.target;
-		setState({
-			...state,
-			[name]: value,
-		});
+
+	const [error, setError] = useState('');
+
+	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const bookingInfo = {
+			firstname: state.firstname,
+			lastname: state.lastname,
+			email: state.email,
+			phone: state.phone,
+			data: state.date,
+			time: state.time,
+			staff: state.staff,
+			message: state.message,
+		}
+		try {
+			const result = await createBooking(bookingInfo);
+			if (!result.success) {
+				setError(result.message);
+			}
+		} catch (e) {
+			return e
+		}
 	};
 
 	return (
 		<>
 			<Modal size="xl" centered show={bookClicked} onHide={() => hideClicked(false)}>
 				<Modal.Body>
-					<form id="lost-form">
+					<form id="lost-form" onSubmit={onSubmit}>
 						<h4>Client Infomation</h4>
 						<div className={styles.column}>
 							<label>First Name</label>
-							<input type="input" className={`form-control ${styles.input}`} placeholder="Enter First Name" required></input>
+							<input type="input" className={styles.input} placeholder="Enter First Name" required></input>
 							<label>Last Name</label>
-							<input type="input" className={`form-control ${styles.input}`} placeholder="Enter Last Name" required></input>
+							<input type="input" className={styles.input} placeholder="Enter Last Name" required></input>
 							<label>Email</label>
-							<input type="email" className={`form-control ${styles.input}`} placeholder="Enter Email" required></input>
+							<input type="email" className={styles.input} placeholder="Enter Email" required></input>
 							<label>Phone</label>
-							<input type="tel" className={`form-control ${styles.input}`} placeholder="Enter Phone Number" required></input>
+							<input type="tel" className={styles.input} placeholder="Enter Phone Number" required></input>
 						</div>
 						<h4>Appoinment Detail</h4>
 						<div className={styles.column}>
-							<label>Date</label>
-							<input type="date" className={`form-control ${styles.input}`} required></input>
+							<label className={styles.label}>Date</label>
+							<input type="date" className={styles.input} required></input>
 							<label>Time</label>
-							<input type="time" className={`form-control ${styles.input}`} required></input>
+							<input type="time" className={styles.input} required></input>
 							<label>Staff</label>
-							<select id="staffs" name="staffs" className="dropdown">
-								<option value="giang">No preference</option>
-							</select>
+							<select className={styles.input} id="staffs" name="staffs"><option>No preference</option></select>
 							<label>Appoinment Note</label>
-							<input type="input" className={`form-control ${styles.input}`} placeholder="(Optional)"></input>
+							<input type="input" className={styles.input} placeholder="(Optional)"></input>
 						</div>
 						<button className={`btn btn-dark`}>Book an appoiment</button>
 					</form>

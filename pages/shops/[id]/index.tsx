@@ -81,7 +81,7 @@ const ShopPage: NextPage<props> = ({ shop }) => {
 					<div className={styles.services}>
 						<div className={styles.sectionTitle}>
 							<h3>Services</h3>
-							<button className={`btn btn-dark`} onClick={() => setBookClicked(true)}>Book an appoiment</button>
+							<button className={`btn btn-dark`} style={{marginBottom: '5px'}} onClick={() => setBookClicked(true)}>Book an appoiment</button>
 							<CreateBooking bookClicked={bookClicked} hideClicked={() => setBookClicked(false)} />
 						</div>
 						<ListGroup as="ol" numbered>

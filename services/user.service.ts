@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {IUserRegister} from '@/interfaces/IUser';
+import { IUserRegister } from '@/interfaces/IUser';
 
 const URI = 'http://localhost:5000/api/user'
 
@@ -41,7 +41,7 @@ export const login = async (data: any) => {
 };
 export const sendEmailForgetPassword = async (email: string) => {
 	try {
-		const result = await axios.post(`${URI}/send-reset-password-email`, {email})
+		const result = await axios.post(`${URI}/send-reset-password-email`, { email })
 		if (result.status === 200 && result.data.success) {
 			return result.data
 		}
@@ -55,12 +55,26 @@ export const sendEmailForgetPassword = async (email: string) => {
 
 export const changePassword = async (oldPassword: string, newPassword: string) => {
 	try {
-		const result = await axios.post(`${URI}/change-password`, {oldPassword, newPassword}, {withCredentials: true})
+		const result = await axios.post(`${URI}/change-password`, { oldPassword, newPassword }, { withCredentials: true })
 		if (result.status === 200 && result.data.success) {
 			return result.data
 		}
 	}
-	catch (e:any) {
+	catch (e: any) {
+		return e.response.data
+	}
+}
+
+export const createBooking = async (data: any) => {
+	try {
+		const result = await axios.post(`${URI}/createBooking`, data, {
+			withCredentials: true
+		});
+		if (result.status === 200 && result.data.success) {
+			return result.data
+		}
+	}
+	catch (e: any) {
 		return e.response.data
 	}
 }
