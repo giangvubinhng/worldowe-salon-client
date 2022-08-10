@@ -7,6 +7,6 @@ RUN if [ "$NODE_ENV" = "development" ]; \
 	else yarn install --only=production; \
 	fi
 COPY . ./
-EXPOSE 5000
+EXPOSE 3000
 CMD ["yarn", "run", "dev"]
 

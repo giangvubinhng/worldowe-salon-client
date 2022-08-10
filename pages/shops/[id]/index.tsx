@@ -5,7 +5,7 @@ import {GET_CURRENT_SHOP, GET_SHOPS} from "@/graphql/shopQueries";
 import {IShopBody} from '@/interfaces/IShop';
 import {useAppSelector} from '@/app/hooks'
 import {Offcanvas, Container, Row, Col, Button, Carousel, ListGroup, Badge} from 'react-bootstrap';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import Card from '@/components/Card'
 
@@ -21,16 +21,16 @@ const ImageURL3 = "https://images.pexels.com/photos/853427/pexels-photo-853427.j
 const PROFILE_PIC = "https://scontent-iad3-1.xx.fbcdn.net/v/t1.6435-9/138221343_1762256757282908_5813164246551012056_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=174925&_nc_ohc=prak6m8l4q0AX_136SH&_nc_oc=AQkhsEunBbzsrLepY8ZkF9sfao9kXQHnHWY5h2oP9lrYw653BSIwvT23wpwSQuLi_FU&tn=ZuITXcjMUJcVJ6d5&_nc_ht=scontent-iad3-1.xx&oh=00_AT-8SOyaxN0GIysPy0ALnJ8Ua2TsUw74DQ0mAvNlmJ1jdw&oe=62EFED84"
 const ShopPage: NextPage<props> = ({shop}) => {
 	const user = useAppSelector((state) => state.user.value);
-	const admin = parseInt(user.user_id) === shop.user_id;
+	//const admin = parseInt(user.user_id) === shop.user_id;
 	const [showCanvas, setShowCanvas] = useState(false);
 	const handleCloseCanvas = () => setShowCanvas(false);
 	const handleShowCanvas = () => setShowCanvas(true);
-	// const [admin, setAdmin] = useState(false);
-	// useEffect(() => {
-	// 	if(parseInt(user.user_id) === shop.user_id){
-	// 		setAdmin(true)
-	// 	}
-	// }, [user])
+	const [admin, setAdmin] = useState(false);
+	useEffect(() => {
+		if (parseInt(user.user_id) === shop.user_id) {
+			setAdmin(true)
+		}
+	}, [user])
 
 	if (!shop) return <div> empty </div>
 	return (<div className={styles.container}>
@@ -143,7 +143,7 @@ const ShopPage: NextPage<props> = ({shop}) => {
 export default ShopPage
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const prefetch = false;
+	const prefetch = true;
 	const client = initializeApollo(null, prefetch);
 	const {data} = await client.query({query: GET_SHOPS, variables: {name: ""}})
 	const paths = data.shops.map((e: IShopBody) => ({
@@ -158,7 +158,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
 	const {params} = ctx;
-	const prefetch = false;
+	const prefetch = true;
 	const client = initializeApollo(null, prefetch);
 	const {data} = await client.query({query: GET_CURRENT_SHOP, variables: {id: params?.id ? parseInt(params.id as string) : -1}})
 	return {

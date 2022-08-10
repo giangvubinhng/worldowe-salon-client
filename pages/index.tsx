@@ -1,18 +1,18 @@
-import type { NextPage } from 'next';
-import { useState } from 'react';
+import type {NextPage} from 'next';
+import {useState} from 'react';
 import {useRouter} from "next/router"
 import Head from 'next/head';
 import styles from '@/styles/Home.module.css';
-import { Form, FormControl, Button } from 'react-bootstrap';
+import {Form, FormControl, Button} from 'react-bootstrap';
 import homeImage from "@/public/hero.png"
-import { GetStaticProps } from 'next';
+import {GetStaticProps} from 'next';
 import {initializeApollo} from '@/Apollo/client'
 import {GET_SHOPS} from "@/graphql/shopQueries";
-import { IShopBody } from '@/interfaces/IShop';
+import {IShopBody} from '@/interfaces/IShop';
 import RecommendedShops from '@/components/RecommendedShops'
 import About from '@/components/About'
 
-interface props{
+interface props {
 	shops: IShopBody[];
 }
 const Home: NextPage<props> = ({shops}) => {
@@ -79,12 +79,12 @@ const Home: NextPage<props> = ({shops}) => {
 						<div className={styles.titleContainer}>
 							<h2 className={styles.sectionName}>Recommended Salons Around You</h2>
 						</div>
-						<RecommendedShops shops={shops}/>
+						<RecommendedShops shops={shops} />
 					</div>
 				</section>
 				<section className={styles.section}>
 					<div>
-						<About/>
+						<About />
 					</div>
 				</section>
 			</main>
@@ -95,12 +95,12 @@ const Home: NextPage<props> = ({shops}) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	const prefetch = false;
+	const prefetch = true;
 	const client = initializeApollo(null, prefetch);
-    const {data} = await client.query({query: GET_SHOPS, variables: {name: "Giang"}})
+	const {data} = await client.query({query: GET_SHOPS, variables: {name: "Giang"}})
 	return {
 		props: {
-			shops: data.shops 
+			shops: data.shops
 		}
 	}
 }
