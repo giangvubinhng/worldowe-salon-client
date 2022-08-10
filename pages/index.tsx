@@ -95,7 +95,7 @@ const Home: NextPage<props> = ({shops}) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-	const prefetch = false;
+	const prefetch = true;
 	const client = initializeApollo(null, prefetch);
     const {data} = await client.query({query: GET_SHOPS, variables: {name: "Giang"}})
 	return {
