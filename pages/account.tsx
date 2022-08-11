@@ -6,7 +6,7 @@ import Link from 'next/link';
 import {uploadProfilePic} from '@/services/upload.service'
 import styles from '@/styles/account.module.css'
 
-const URI = 'http://localhost:5000'
+const URI = process.env.NEXT_PUBLIC_SERVER;
 
 const Account: FC = () => {
 

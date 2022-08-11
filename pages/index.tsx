@@ -11,6 +11,7 @@ import {GET_SHOPS} from "@/graphql/shopQueries";
 import {IShopBody} from '@/interfaces/IShop';
 import RecommendedShops from '@/components/RecommendedShops'
 import About from '@/components/About'
+import Image from 'next/image';
 
 interface props {
 	shops: IShopBody[];
@@ -39,7 +40,7 @@ const Home: NextPage<props> = ({shops}) => {
 			<main className={styles.main}>
 				<section className={styles.hero}>
 					<div className={styles.background}>
-						<img className={styles.srcImg} src={homeImage.src} alt="" />
+						<img className={styles.srcImg} src={homeImage.src} alt=""/>
 					</div>
 					<div className={styles.content}>
 						<div className={styles.text}>
@@ -94,7 +95,7 @@ const Home: NextPage<props> = ({shops}) => {
 
 export default Home;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async () => {
 	const prefetch = true;
 	const client = initializeApollo(null, prefetch);
 	const {data} = await client.query({query: GET_SHOPS, variables: {name: "Giang"}})

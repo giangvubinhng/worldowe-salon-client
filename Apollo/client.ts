@@ -14,8 +14,10 @@ import isEqual from 'lodash/isEqual'
 //export default client;
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__'
-const PREFETCH_URI = `http://172.28.0.1:5000`
-const URI = `http://localhost:5000`
+// const URI = `http://localhost:5000`
+// const PREFETCH_URI = `http://nginx:5000`
+const URI = process.env.NEXT_PUBLIC_SERVER;
+const PREFETCH_URI = process.env.NEXT_PUBLIC_DOCKER_SERVER
 
 let apolloClient: any;
 

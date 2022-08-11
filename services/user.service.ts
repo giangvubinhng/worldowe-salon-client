@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {IUserRegister} from '@/interfaces/IUser';
 
-const URI = 'http://localhost:5000/api/user'
+const URI = `${process.env.NEXT_PUBLIC_SERVER}/api/user`
 
 export const fetchUser = async () => {
 	const results = await axios.get(`${URI}/current-user`, {

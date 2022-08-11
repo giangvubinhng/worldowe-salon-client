@@ -4,8 +4,7 @@ interface GET_RESPONSE {
     message: string;
     profile_image: string;
 }
-const URI = 'http://localhost:5000'
-
+const URI = process.env.NEXT_PUBLIC_SERVER;
 export const uploadProfilePic = async (file: string | Blob) => {
 
     const formData = new FormData();

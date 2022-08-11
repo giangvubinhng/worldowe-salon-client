@@ -3,12 +3,13 @@ import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
+const API_URL = process.env.NEXT_PUBLIC_SERVER;
 const VerifyPage: NextPage = () => {
 	const router = useRouter();
 	const [verify, setVerify] = useState<string | null>(null);
 	const verifyUser = async (code: string | string[] | undefined) => {
 		const {data} = await axios.get(
-			`http://localhost:5000/api/user/verify/${code}`
+			`${API_URL}/api/user/verify/${code}`
 		);
 		setVerify(data.message);
 	};

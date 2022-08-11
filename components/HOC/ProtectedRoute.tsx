@@ -3,7 +3,7 @@ import { IUserBody } from '@/interfaces/IUser';
 import cookie from 'cookie';
 import axios from 'axios';
 
-const URI = `http://172.28.0.1:5000`
+const URI = process.env.NEXT_PUBLIC_DOCKER_SERVER
 // This protects from users who aren't logged in
 export function ProtectedRoute(gssp: GetServerSideProps) {
   return async (ctx: GetServerSidePropsContext) => {
